@@ -16,7 +16,7 @@
     SupportedOrientations="Portrait"  Orientation="Portrait" shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Panorama Title="QCon 12 SP">
+        <controls:Panorama Title="QCon 12 SP" TitleTemplate="{StaticResource TitleTemplate}">
             <controls:PanoramaItem Header="first item">
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>

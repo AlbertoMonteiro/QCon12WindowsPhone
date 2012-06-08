@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate x:Key="TitleTemplate">
+        <StackPanel Orientation="Horizontal" Margin="0,55,0,0">
+            <TextBlock FontFamily="Estrangelo Edessa" Text="Q" Foreground="#82BB39" FontWeight="ExtraBold"/>
+            <TextBlock Text="Con12 SP" Foreground="#006CB4" FontWeight="Bold" FontFamily="Estrangelo Edessa"/>
+        </StackPanel>
+    </DataTemplate>
+    <!-- Resource dictionary entries should be defined here. -->
+</ResourceDictionary>

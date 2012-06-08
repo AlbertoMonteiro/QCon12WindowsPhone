@@ -5,7 +5,12 @@
     xmlns:local="clr-namespace:QCon12.Phone">
 
     <Application.Resources>
-        <local:Bootstrapper x:Key="bootstrapper" />
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+    			<ResourceDictionary Source="ResourceDictionary.xaml"/>
+    		</ResourceDictionary.MergedDictionaries>
+    		<local:Bootstrapper x:Key="bootstrapper" />
+    	</ResourceDictionary>
     </Application.Resources>
 
 </Application>
