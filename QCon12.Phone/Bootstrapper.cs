@@ -14,7 +14,6 @@ namespace QCon12.Phone
             container = new PhoneContainer(RootFrame);
             container.RegisterPhoneServices();
             container.PerRequest<MainPageViewModel>();
-            container.PerRequest<ItemViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
