@@ -521,46 +521,46 @@
               Enables/Disables property change notification.
             </summary>
         </member>
-        <member name="T:Caliburn.Micro.PropertyChangedBase">
+        <member name="T:Caliburn.Micro.INotifyPropertyChanged">
             <summary>
               A base class that implements the infrastructure for property change notification and automatically performs UI thread marshalling.
             </summary>
         </member>
-        <member name="M:Caliburn.Micro.PropertyChangedBase.#ctor">
+        <member name="M:Caliburn.Micro.INotifyPropertyChanged.#ctor">
             <summary>
-              Creates an instance of <see cref="T:Caliburn.Micro.PropertyChangedBase"/>.
+              Creates an instance of <see cref="T:Caliburn.Micro.INotifyPropertyChanged"/>.
             </summary>
         </member>
-        <member name="M:Caliburn.Micro.PropertyChangedBase.Refresh">
+        <member name="M:Caliburn.Micro.INotifyPropertyChanged.Refresh">
             <summary>
               Raises a change notification indicating that all bindings should be refreshed.
             </summary>
         </member>
-        <member name="M:Caliburn.Micro.PropertyChangedBase.NotifyOfPropertyChange(System.String)">
+        <member name="M:Caliburn.Micro.INotifyPropertyChanged.NotifyOfPropertyChange(System.String)">
             <summary>
               Notifies subscribers of the property change.
             </summary>
             <param name = "propertyName">Name of the property.</param>
         </member>
-        <member name="M:Caliburn.Micro.PropertyChangedBase.NotifyOfPropertyChange``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+        <member name="M:Caliburn.Micro.INotifyPropertyChanged.NotifyOfPropertyChange``1(System.Linq.Expressions.Expression{System.Func{``0}})">
             <summary>
               Notifies subscribers of the property change.
             </summary>
             <typeparam name = "TProperty">The type of the property.</typeparam>
             <param name = "property">The property expression.</param>
         </member>
-        <member name="M:Caliburn.Micro.PropertyChangedBase.RaisePropertyChangedEventImmediately(System.String)">
+        <member name="M:Caliburn.Micro.INotifyPropertyChanged.RaisePropertyChangedEventImmediately(System.String)">
             <summary>
               Raises the property changed event immediately.
             </summary>
             <param name = "propertyName">Name of the property.</param>
         </member>
-        <member name="E:Caliburn.Micro.PropertyChangedBase.PropertyChanged">
+        <member name="E:Caliburn.Micro.INotifyPropertyChanged.PropertyChanged">
             <summary>
               Occurs when a property value changes.
             </summary>
         </member>
-        <member name="P:Caliburn.Micro.PropertyChangedBase.IsNotifying">
+        <member name="P:Caliburn.Micro.INotifyPropertyChanged.IsNotifying">
             <summary>
               Enables/Disables property change notification.
             </summary>

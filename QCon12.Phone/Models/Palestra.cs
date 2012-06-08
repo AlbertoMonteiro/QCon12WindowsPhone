@@ -1,9 +1,9 @@
 ﻿using System;
-using Caliburn.Micro;
+using System.ComponentModel;
 
 namespace QCon12.Phone.Models
 {
-    public class Palestra : PropertyChangedBase
+    public class Palestra : INotifyPropertyChanged
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -11,5 +11,11 @@ namespace QCon12.Phone.Models
         public DateTime Horario { get; set; }
         public Palestrante Palestrante { get; set; }
         public string Descricao { get; set; }
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
     }
 }

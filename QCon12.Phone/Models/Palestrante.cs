@@ -1,13 +1,10 @@
-using Caliburn.Micro;
+using System.ComponentModel;
 
 namespace QCon12.Phone.Models
 {
-    public class Palestrante : PropertyChangedBase
+    public class Palestrante : INotifyPropertyChanged
     {
-        public Palestrante()
-        {
-            
-        }
+        public Palestrante() {}
 
         public Palestrante(string nome, string foto)
         {
@@ -21,5 +18,6 @@ namespace QCon12.Phone.Models
         public string Twitter { get; set; }
         public string Foto { get; set; }
         public string Email { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
