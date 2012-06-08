@@ -36,7 +36,7 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <toolkit:HubTile Title="{Binding Nome}" Message="{Binding Nome}" Source="{Binding Foto}" Margin="30,10,0,0" />
+                            <toolkit:HubTile Title="{Binding Nome}" Message="{Binding Nome}" Source="{Binding Foto}" Margin="30,10,0,0" Background="#FF006CB4" Foreground="#FF82BB39" />
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
