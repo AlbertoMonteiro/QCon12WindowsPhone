@@ -1,7 +1,9 @@
+using System;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using QCon12.Mobile.Models;
 using QCon12.Mobile.Requests;
+using System.Linq;
 
 namespace QCon12.Mobile.ViewModel
 {
@@ -19,11 +21,29 @@ namespace QCon12.Mobile.ViewModel
 
             if (isInDesignModeStatic)
             {
-                Tracks.Add(new Track("O que eu sempre quiz fazer mas nunca fiz", "Teste 2"));
+                Tracks.Add(new Track("O que eu sempre quiz fazer mas nunca fiz", "Teste 2 Teste 2 Teste 2 Teste 2 Teste 2\n Teste 2 Teste 2 Teste 2 Teste 2  Teste 2 Teste 2 Teste 2 Teste 2  Teste 2 Teste 2 Teste 2 Teste 2 "));
                 Tracks.Add(new Track("Teste", "Teste"));
                 Tracks.Add(new Track("Arquitetura na cloud", "Teste 1"));
 
                 Palestrantes.Add(new Palestrante("Elemar Jr", "http://qconsp.com/images/palestrantes/elemar-junior.jpg?1339080693"));
+
+                Palestras.Add(new Palestra
+                {
+                    Descricao = "Conteudo da palestra 1 que fala sobre alguma coisa que eu não sei mais o que escrever aqui",
+                    Horario = new DateTime(2012,08,4,12,00,00),
+                    Nome = "Palestra 1",
+                    Palestrante = Palestrantes.First(),
+                    Track = Tracks.First()
+                });
+                
+                Palestras.Add(new Palestra
+                {
+                    Descricao = "Conteudo da palestra 2 que fala sobre alguma coisa que eu não sei mais o que escrever aqui",
+                    Horario = new DateTime(2012,8,5,15,00,00),
+                    Nome = "Palestra 2",
+                    Palestrante = Palestrantes.First(),
+                    Track = Tracks.Last()
+                });
             } else
             {
                 LoadTracks();

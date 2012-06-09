@@ -10,7 +10,12 @@ namespace QCon12.Mobile.Requests
     public abstract class AzureServiceRequest<T>
     {
         protected readonly string controller;
+#if DEBUG
+        protected const string URL = @"http://192.168.25.2/qcon12/api/";
+#else
         protected const string URL = @"http://qcon12sp.azurewebsites.net/api/";
+#endif
+
 
         protected AzureServiceRequest(string controller)
         {

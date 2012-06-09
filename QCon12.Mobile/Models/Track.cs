@@ -15,6 +15,7 @@ namespace QCon12.Mobile.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Bio { get; set; }
+        public string Logo { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

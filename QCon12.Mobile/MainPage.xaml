@@ -23,9 +23,12 @@
                 <ListBox ItemsSource="{Binding Tracks}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Nome}" Margin="0" FontSize="32" Width="420" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated"/>
-                                <TextBlock Text="{Binding Bio}" Margin="0" FontSize="16" Width="420" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" FontFamily="Calibri" Foreground="#FF939393" />
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Logo}" Width="48" Margin="0,0,10,0"></Image>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Nome}" Margin="0" FontSize="32" Width="372" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated"/>
+                                    <TextBlock Text="{Binding Bio}" Margin="0" FontSize="16" Width="372" Height="40" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" FontFamily="Calibri" Foreground="#FF939393" TextWrapping="Wrap" />
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -45,6 +48,27 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </controls:PanoramaItem>
+            <controls:PanoramaItem Header="Palestras" HeaderTemplate="{StaticResource HeaderTemplate}">
+                <ListBox ItemsSource="{Binding Path=Palestras}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                            	<Image Source="{Binding Palestrante.Foto}" Width="48" Margin="0,0,5,0" VerticalAlignment="Top" />
+                            	<StackPanel VerticalAlignment="Top">
+                            		<StackPanel Orientation="Horizontal" Width="372" VerticalAlignment="Top">
+	                                	<TextBlock Text="{Binding Nome}" Margin="0" FontSize="24" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" VerticalAlignment="Top"/>
+										<TextBlock FontSize="24" Text=" - " VerticalAlignment="Top"/>
+										<TextBlock Text="{Binding Horario, StringFormat='dd/MM/yyyy HH:mm'}" FontSize="24" TextWrapping="Wrap" TextTrimming="WordEllipsis" VerticalAlignment="Top"/>
+									</StackPanel>
+									<TextBlock Text="{Binding Track.Nome, StringFormat='Track: {0}'}" Margin="0" FontSize="16" Width="372" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" FontFamily="Calibri" TextWrapping="Wrap" />
+	                                <TextBlock Text="{Binding Descricao}" Margin="0" FontSize="16" Width="372" Height="40" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" FontFamily="Calibri" Foreground="#FF939393" TextWrapping="Wrap" />									
+								</StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:PanoramaItem>
+
         </controls:Panorama>
     </Grid>
  
