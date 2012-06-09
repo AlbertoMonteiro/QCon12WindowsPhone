@@ -24,16 +24,25 @@ namespace QCon12.Mobile.ViewModel
                 Tracks.Add(new Track("Arquitetura na cloud", "Teste 1"));
             } else
             {
-                LoadData();
+                LoadTracks();
+                LoadPalestrantes();
             }
         }
 
-        private async void LoadData()
+        private async void LoadTracks()
         {
             var tracksRequest = new TracksAzureRequest();
             var tracks = await tracksRequest.List();
             foreach (var track in tracks)
                 Tracks.Add(track);
+        }
+
+        private async void LoadPalestrantes()
+        {
+            var palestrantesRequest = new PalestrantesAzureRequest();
+            var palestrantes = await palestrantesRequest.List();
+            foreach (var palestrante in palestrantes)
+                Palestrantes.Add(palestrante);
         }
     }
 }
