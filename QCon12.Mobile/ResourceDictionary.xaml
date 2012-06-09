@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls">
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
 	<DataTemplate x:Key="TitleTemplate">
 		<StackPanel Orientation="Horizontal" Margin="0,55,0,0">
 			<TextBlock FontFamily="Estrangelo Edessa" Text="Q" Foreground="#82BB39" FontWeight="ExtraBold"/>
@@ -34,4 +34,18 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	<DataTemplate x:Key="PalestraListBoxTemplate">
+		<StackPanel Orientation="Horizontal">
+			<Image Source="{Binding Palestrante.Foto}" Width="48" Margin="0,0,5,0" VerticalAlignment="Top" />
+			<StackPanel VerticalAlignment="Top">
+				<StackPanel Orientation="Horizontal" Width="372" VerticalAlignment="Top">
+					<TextBlock Text="{Binding Nome}" Margin="0" FontSize="24" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" VerticalAlignment="Top"/>
+					<TextBlock FontSize="24" Text=" - " VerticalAlignment="Top"/>
+					<TextBlock Text="{Binding Horario, StringFormat=dd/MM/yyyy HH:mm}" FontSize="24" TextWrapping="Wrap" TextTrimming="WordEllipsis" VerticalAlignment="Top"/>
+				</StackPanel>
+				<TextBlock Text="{Binding Track.Nome, StringFormat=Track: \{0\}}" Margin="0" FontSize="16" Width="372" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" FontFamily="Calibri" TextWrapping="Wrap" />
+				<TextBlock Text="{Binding Descricao}" Margin="0" FontSize="16" Width="372" Height="40" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" FontFamily="Calibri" Foreground="#FF939393" TextWrapping="Wrap" />									
+			</StackPanel>
+		</StackPanel>
+	</DataTemplate>
 </ResourceDictionary>

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QCon12", "QCon12\QCon12.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QCon12.Mobile", "QCon12.Mobile\QCon12.Mobile.csproj", "{8248E696-DEE5-41FB-9053-2D6202CE7623}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbertoMonteiroWP7Tools", "..\AlbertoMonteiroWP7Tools\AlbertoMonteiroWP7Tools\AlbertoMonteiroWP7Tools.csproj", "{424B6F6C-D52F-4EBD-9107-27B03CF63848}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8248E696-DEE5-41FB-9053-2D6202CE7623}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8248E696-DEE5-41FB-9053-2D6202CE7623}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8248E696-DEE5-41FB-9053-2D6202CE7623}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{424B6F6C-D52F-4EBD-9107-27B03CF63848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424B6F6C-D52F-4EBD-9107-27B03CF63848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424B6F6C-D52F-4EBD-9107-27B03CF63848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424B6F6C-D52F-4EBD-9107-27B03CF63848}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Navigation;
+using AlbertoMonteiroWP7Tools.Controls;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -101,6 +102,7 @@ namespace QCon12.Mobile
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
             RootFrame = new PhoneApplicationFrame();
+            GlobalLoading.Instance.Initialize(RootFrame);
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

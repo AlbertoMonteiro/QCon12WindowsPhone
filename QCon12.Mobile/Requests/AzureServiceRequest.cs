@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
+using AlbertoMonteiroWP7Tools.Controls;
 using Newtonsoft.Json;
 
 namespace QCon12.Mobile.Requests
@@ -35,14 +37,17 @@ namespace QCon12.Mobile.Requests
         private async Task<TR> DownloadAndDeserialize<TR>()
         {
             var request = new WebClient();
-
+            GlobalLoading.Instance.PushLoading();
+            
             var str = await request.DownloadStringTaskAsync(new Uri(URL + controller));
-
+#if DEBUG
+            Thread.Sleep(1000); 
+#endif
             var settings = new JsonSerializerSettings();
             var serializer = JsonSerializer.Create(settings);
             var stringReader = new StringReader(str);
             var instance = serializer.Deserialize<TR>(new JsonTextReader(stringReader));
-
+            GlobalLoading.Instance.PopLoading();
             return instance;
         }
     }

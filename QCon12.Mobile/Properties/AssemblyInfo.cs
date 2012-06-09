@@ -6,12 +6,12 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("QCon12.Mobile")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("QCon12 SP")]
+[assembly: AssemblyDescription("Seu guia do QCon12 SP")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("QCon12.Mobile")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCompany("Alberto Monteiro")]
+[assembly: AssemblyProduct("QCon12 SP")]
+[assembly: AssemblyCopyright("Copyright © Alberto Monteiro 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
