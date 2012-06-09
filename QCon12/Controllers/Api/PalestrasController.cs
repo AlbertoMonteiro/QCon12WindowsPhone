@@ -16,7 +16,7 @@ namespace QCon12.Controllers.Api
 {
     public class PalestrasController : ApiController
     {
-        private readonly QCon12Context db = new QCon12Context();
+        private readonly QCon12Context db = QCon12Context.Instance;
 
         // GET api/Palestras
         public IEnumerable<Palestra> GetPalestras()
@@ -87,12 +87,6 @@ namespace QCon12.Controllers.Api
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, palestra);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

@@ -1,28 +1,18 @@
-﻿#region
-
-using System.Data;
+﻿using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using QCon12.Models;
-
-#endregion
 
 namespace QCon12.Controllers
 {
     public class PalestraController : Controller
     {
-        private readonly QCon12Context db = new QCon12Context();
-
-        //
-        // GET: /Palestra/
+        private readonly QCon12Context db = QCon12Context.Instance;
 
         public ActionResult Index()
         {
-            return View(db.Palestras.ToList());
+            return View(db.Palestras.Include("Palestrante").Include("Track").ToList());
         }
-
-        //
-        // GET: /Palestra/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -32,16 +22,19 @@ namespace QCon12.Controllers
             return View(palestra);
         }
 
-        //
-        // GET: /Palestra/Create
-
         public ActionResult Create()
         {
+            LoadPalestrantesAndTracksToViewBag();
             return View();
         }
 
-        //
-        // POST: /Palestra/Create
+        private void LoadPalestrantesAndTracksToViewBag(Palestrante palestrante = null, Track track = null)
+        {
+            var palestrantes = db.Palestrantes.ToList();
+            var find = palestrantes.SingleOrDefault(x => palestrante != null && x.Id == palestrante.Id);
+            ViewBag.Palestrantes = new SelectList(palestrantes, "Id", "Nome", find);
+            ViewBag.Tracks = new SelectList(db.Tracks, "Id", "Nome", track);
+        }
 
         [HttpPost]
         public ActionResult Create(Palestra palestra)
@@ -49,26 +42,20 @@ namespace QCon12.Controllers
             if (ModelState.IsValid)
             {
                 db.Palestras.Add(palestra);
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            LoadPalestrantesAndTracksToViewBag();
             return View(palestra);
         }
-
-        //
-        // GET: /Palestra/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
             var palestra = db.Palestras.Find(id);
             if (palestra == null)
                 return HttpNotFound();
+            LoadPalestrantesAndTracksToViewBag(palestra.Palestrante, palestra.Track);
             return View(palestra);
         }
-
-        //
-        // POST: /Palestra/Edit/5
 
         [HttpPost]
         public ActionResult Edit(Palestra palestra)
@@ -76,14 +63,11 @@ namespace QCon12.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(palestra).State = EntityState.Modified;
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            LoadPalestrantesAndTracksToViewBag();
             return View(palestra);
         }
-
-        //
-        // GET: /Palestra/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
@@ -93,22 +77,12 @@ namespace QCon12.Controllers
             return View(palestra);
         }
 
-        //
-        // POST: /Palestra/Delete/5
-
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             var palestra = db.Palestras.Find(id);
             db.Palestras.Remove(palestra);
-            db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

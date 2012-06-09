@@ -13,9 +13,14 @@ namespace QCon12.Models
         // 
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<QCon12.Models.QCon12Context>());
 
-        public QCon12Context() : base("name=QCon12Context")
+        static QCon12Context()
         {
+            Instance = new QCon12Context();
+            Instance.Configuration.LazyLoadingEnabled = true;
         }
+
+        private QCon12Context() : base("name=QCon12Context") {}
+        public static QCon12Context Instance { get; private set; }
 
         public DbSet<Palestrante> Palestrantes { get; set; }
 

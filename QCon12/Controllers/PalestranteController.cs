@@ -11,7 +11,7 @@ namespace QCon12.Controllers
 {
     public class PalestranteController : Controller
     {
-        private readonly QCon12Context db = new QCon12Context();
+        private readonly QCon12Context db = QCon12Context.Instance;
 
         //
         // GET: /Default1/
@@ -76,7 +76,6 @@ namespace QCon12.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(palestrante).State = EntityState.Modified;
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(palestrante);
@@ -101,14 +100,8 @@ namespace QCon12.Controllers
         {
             var palestrante = db.Palestrantes.Find(id);
             db.Palestrantes.Remove(palestrante);
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
-        }
     }
 }

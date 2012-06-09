@@ -139,11 +139,16 @@
     <Compile Include="Migrations\201206091456331_First.Designer.cs">
       <DependentUpon>201206091456331_First.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201206092131152_Secon.cs" />
+    <Compile Include="Migrations\201206092131152_Secon.Designer.cs">
+      <DependentUpon>201206092131152_Secon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Palestra.cs" />
     <Compile Include="Models\Palestrante.cs" />
     <Compile Include="Models\QCon12Context.cs" />
     <Compile Include="Models\Track.cs" />
+    <Compile Include="Modules\SessionLifeCycle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

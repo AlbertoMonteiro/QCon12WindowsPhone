@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
@@ -10,13 +8,11 @@ using System.Net.Http;
 using System.Web.Http;
 using QCon12.Models;
 
-#endregion
-
 namespace QCon12.Controllers.Api
 {
     public class PalestrantesController : ApiController
     {
-        private readonly QCon12Context db = new QCon12Context();
+        private readonly QCon12Context db = QCon12Context.Instance;
 
         // GET api/Palestrantes
         public IEnumerable<Palestrante> GetPalestrantes()
@@ -87,12 +83,6 @@ namespace QCon12.Controllers.Api
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, palestrante);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

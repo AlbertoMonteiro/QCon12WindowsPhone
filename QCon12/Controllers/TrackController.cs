@@ -11,7 +11,7 @@ namespace QCon12.Controllers
 {
     public class TrackController : Controller
     {
-        private readonly QCon12Context db = new QCon12Context();
+        private readonly QCon12Context db = QCon12Context.Instance;
 
         //
         // GET: /Track/
@@ -49,7 +49,6 @@ namespace QCon12.Controllers
             if (ModelState.IsValid)
             {
                 db.Tracks.Add(track);
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -76,7 +75,6 @@ namespace QCon12.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(track).State = EntityState.Modified;
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(track);
@@ -101,14 +99,8 @@ namespace QCon12.Controllers
         {
             var track = db.Tracks.Find(id);
             db.Tracks.Remove(track);
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
-        }
     }
 }

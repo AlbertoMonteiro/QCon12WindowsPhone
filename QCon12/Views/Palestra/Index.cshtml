@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QCon12.Models.Palestrante>
+﻿@model IEnumerable<QCon12.Models.Palestra>
 
 @{
     ViewBag.Title = "Index";
@@ -20,6 +20,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Descricao)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Palestrante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Track)
+        </th>
         <th></th>
     </tr>
 
@@ -32,7 +38,13 @@
             @Html.DisplayFor(modelItem => item.Horario)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
+            @(item.Descricao != null ? "Tem descrição" : "Falta descrição")
+        </td>
+        <td>
+            @(item.Palestrante != null ? item.Palestrante.Nome : "Sem palestrante")
+        </td>
+        <td>
+            @(item.Track != null ? item.Track.Nome : "Sem track")
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
