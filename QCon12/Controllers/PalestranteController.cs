@@ -18,7 +18,7 @@ namespace QCon12.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Palestrantes.ToList());
+            return View(db.Palestrantes);
         }
 
         //

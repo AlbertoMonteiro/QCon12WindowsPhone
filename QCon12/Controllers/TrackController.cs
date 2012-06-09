@@ -1,11 +1,6 @@
-﻿#region
-
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using System.Web.Mvc;
 using QCon12.Models;
-
-#endregion
 
 namespace QCon12.Controllers
 {
@@ -13,16 +8,10 @@ namespace QCon12.Controllers
     {
         private readonly QCon12Context db = QCon12Context.Instance;
 
-        //
-        // GET: /Track/
-
         public ActionResult Index()
         {
-            return View(db.Tracks.ToList());
+            return View(db.Tracks);
         }
-
-        //
-        // GET: /Track/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -32,16 +21,10 @@ namespace QCon12.Controllers
             return View(track);
         }
 
-        //
-        // GET: /Track/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /Track/Create
 
         [HttpPost]
         public ActionResult Create(Track track)
@@ -55,9 +38,6 @@ namespace QCon12.Controllers
             return View(track);
         }
 
-        //
-        // GET: /Track/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
             var track = db.Tracks.Find(id);
@@ -65,9 +45,6 @@ namespace QCon12.Controllers
                 return HttpNotFound();
             return View(track);
         }
-
-        //
-        // POST: /Track/Edit/5
 
         [HttpPost]
         public ActionResult Edit(Track track)
@@ -80,9 +57,6 @@ namespace QCon12.Controllers
             return View(track);
         }
 
-        //
-        // GET: /Track/Delete/5
-
         public ActionResult Delete(int id = 0)
         {
             var track = db.Tracks.Find(id);
@@ -91,9 +65,6 @@ namespace QCon12.Controllers
             return View(track);
         }
 
-        //
-        // POST: /Track/Delete/5
-
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -101,6 +72,5 @@ namespace QCon12.Controllers
             db.Tracks.Remove(track);
             return RedirectToAction("Index");
         }
-
     }
 }

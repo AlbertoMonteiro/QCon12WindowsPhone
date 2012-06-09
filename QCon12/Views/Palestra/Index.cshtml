@@ -9,49 +9,17 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Horario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Palestrante)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Track)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Horario)
-        </td>
-        <td>
-            @(item.Descricao != null ? "Tem descrição" : "Falta descrição")
-        </td>
-        <td>
-            @(item.Palestrante != null ? item.Palestrante.Nome : "Sem palestrante")
-        </td>
-        <td>
-            @(item.Track != null ? item.Track.Nome : "Sem track")
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+@Html.Telerik().Grid(Model).Name("Palestras").Columns(col =>
+{
+    col.Bound(palestrante => palestrante.Id); 
+    col.Bound(palestrante => palestrante.Nome);
+    col.Bound(palestrante => palestrante.Horario);
+    col.Bound(palestrante => palestrante.Descricao).Template(@<text>@(item.Descricao != null ? "Tem descrição" : "Falta descrição")</text>);
+    col.Bound(palestrante => palestrante.Palestrante).Template(@<text>@(item.Palestrante != null ? item.Palestrante.Nome : "Sem palestrante")</text>);
+    col.Bound(palestrante => palestrante.Track).Template(@<text>@(item.Track != null ? item.Track.Nome : "Sem track")</text>);
+    col.Command(factory =>
+    {
+        factory.Custom("Editar").Action("Edit", "Palestra").Text("Editar");
+        factory.Custom("Deletar").Action("Delete", "Palestra").Text("Deletar");
+    });
+}).DataKeys(factory => factory.Add("Id")).Pageable().Groupable().Sortable()

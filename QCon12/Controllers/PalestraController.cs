@@ -1,5 +1,5 @@
-﻿using System.Data;
-using System.Linq;
+﻿using System;
+using System.Data;
 using System.Web.Mvc;
 using QCon12.Models;
 
@@ -11,7 +11,7 @@ namespace QCon12.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Palestras.Include("Palestrante").Include("Track").ToList());
+            return View(db.Palestras.Include("Palestrante").Include("Track"));
         }
 
         public ActionResult Details(int id = 0)
@@ -25,14 +25,12 @@ namespace QCon12.Controllers
         public ActionResult Create()
         {
             LoadPalestrantesAndTracksToViewBag();
-            return View();
+            return View(new Palestra {Horario = new DateTime(2012, 8, 4)});
         }
 
         private void LoadPalestrantesAndTracksToViewBag(Palestrante palestrante = null, Track track = null)
         {
-            var palestrantes = db.Palestrantes.ToList();
-            var find = palestrantes.SingleOrDefault(x => palestrante != null && x.Id == palestrante.Id);
-            ViewBag.Palestrantes = new SelectList(palestrantes, "Id", "Nome", find);
+            ViewBag.Palestrantes = new SelectList(db.Palestrantes, "Id", "Nome", palestrante);
             ViewBag.Tracks = new SelectList(db.Tracks, "Id", "Nome", track);
         }
 

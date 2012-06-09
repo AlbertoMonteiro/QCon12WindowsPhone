@@ -4,6 +4,7 @@ namespace QCon12.Models
 {
     public class QCon12Context : DbContext
     {
+        private static QCon12Context _instance;
         // You can add custom code to this file. Changes will not be overwritten.
         // 
         // If you want Entity Framework to drop and regenerate your database
@@ -13,14 +14,19 @@ namespace QCon12.Models
         // 
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<QCon12.Models.QCon12Context>());
 
-        static QCon12Context()
+        public QCon12Context()
+            : base("name=QCon12Context")
         {
-            Instance = new QCon12Context();
-            Instance.Configuration.LazyLoadingEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
 
-        private QCon12Context() : base("name=QCon12Context") {}
-        public static QCon12Context Instance { get; private set; }
+        public static QCon12Context Instance
+        {
+            get
+            {
+                return _instance ?? (_instance = new QCon12Context());
+            }
+        }
 
         public DbSet<Palestrante> Palestrantes { get; set; }
 
