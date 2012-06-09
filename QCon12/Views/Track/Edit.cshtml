@@ -30,6 +30,14 @@
             @Html.ValidationMessageFor(model => model.Bio)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logo)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Logo)
+            @Html.ValidationMessageFor(model => model.Bio)
+        </div>
+
         <p>
             <input type="submit" value="Save" />
         </p>

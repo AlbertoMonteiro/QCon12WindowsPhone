@@ -15,7 +15,6 @@ namespace QCon12.Models
 
         public QCon12Context() : base("name=QCon12Context")
         {
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<QCon12Context>());
         }
 
         public DbSet<Palestrante> Palestrantes { get; set; }

@@ -27,6 +27,13 @@
             @Html.TextAreaFor(model => model.Bio, 5, 100, null)
             @Html.ValidationMessageFor(model => model.Bio)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Logo)
+            @Html.ValidationMessageFor(model => model.Logo)
+        </div>
 
         <p>
             <input type="submit" value="Create" />

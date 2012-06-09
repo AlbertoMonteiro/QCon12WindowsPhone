@@ -22,6 +22,8 @@ namespace QCon12.Mobile.ViewModel
                 Tracks.Add(new Track("O que eu sempre quiz fazer mas nunca fiz", "Teste 2"));
                 Tracks.Add(new Track("Teste", "Teste"));
                 Tracks.Add(new Track("Arquitetura na cloud", "Teste 1"));
+
+                Palestrantes.Add(new Palestrante("Elemar Jr", "http://qconsp.com/images/palestrantes/elemar-junior.jpg?1339080693"));
             } else
             {
                 LoadTracks();

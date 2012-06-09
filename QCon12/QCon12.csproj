@@ -135,6 +135,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201206091456331_First.cs" />
+    <Compile Include="Migrations\201206091456331_First.Designer.cs">
+      <DependentUpon>201206091456331_First.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Palestra.cs" />
     <Compile Include="Models\Palestrante.cs" />
     <Compile Include="Models\QCon12Context.cs" />
@@ -243,12 +248,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QCon12.Core\QCon12.Core.csproj">
-      <Project>{b9015431-2cfc-4a2a-9990-0bdd44d6b087}</Project>
-      <Name>QCon12.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
