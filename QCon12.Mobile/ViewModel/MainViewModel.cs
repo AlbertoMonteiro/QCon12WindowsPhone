@@ -48,6 +48,7 @@ namespace QCon12.Mobile.ViewModel
             {
                 LoadTracks();
                 LoadPalestrantes();
+                LoadPalestras();
             }
         }
 
@@ -65,6 +66,14 @@ namespace QCon12.Mobile.ViewModel
             var palestrantes = await palestrantesRequest.List();
             foreach (var palestrante in palestrantes)
                 Palestrantes.Add(palestrante);
+        }
+
+        private async void LoadPalestras()
+        {
+            var palestrasAzureRequest = new PalestrasAzureRequest();
+            var palestras = await palestrasAzureRequest.List();
+            foreach (var palestra in palestras)
+                Palestras.Add(palestra);
         }
     }
 }
