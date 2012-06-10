@@ -5,9 +5,9 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-    x:Class="QCon12.Mobile.TrackView"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Track}"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" 
+    x:Class="QCon12.Mobile.PalestranteView"
+    DataContext="{Binding Palestrante, Source={StaticResource Locator}}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,25 +15,26 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
-    <controls:Panorama HeaderTemplate="{StaticResource HeaderTemplate}" ItemContainerStyle="{StaticResource PanoramaItemStyle}">
-        <controls:Panorama.Title>
-            <ContentControl>
-                <StackPanel Orientation="Horizontal" Margin="0,90,0,0">
-                    <Image Source="{Binding Track.Logo}" Height="48" Width="48" Margin="0,0,10,0"/>
-                    <TextBlock Text="{Binding Track.Nome}" FontSize="40" VerticalAlignment="Center"/>
+    <controls:Pivot HeaderTemplate="{StaticResource HeaderTemplate}" ItemContainerStyle="{StaticResource PanoramaItemStyle}">
+        <controls:Pivot.Title>
+            <ContentControl Padding="0" Margin="0" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="100" Source="{Binding Palestrante.Foto}"/>
+                    <TextBlock x:Name="PageTitle" Text="{Binding Palestrante.Nome}" Style="{StaticResource PhoneTextTitle1Style}"/>
                 </StackPanel>
             </ContentControl>
-        </controls:Panorama.Title>
-        <controls:PanoramaItem Header="Descrição">
-            <ScrollViewer>
-                <TextBlock Text="{Binding Track.Bio}" TextOptions.TextHintingMode="Animated" TextTrimming="WordEllipsis" TextWrapping="Wrap" FontFamily="Calibri" />
-            </ScrollViewer>
-        </controls:PanoramaItem>
-        <controls:PanoramaItem Header="Palestras">
-            <ListBox ItemsSource="{Binding Palestras}" ItemTemplate="{StaticResource PalestraListBoxTemplate}"/>
-        </controls:PanoramaItem>		
-    </controls:Panorama>
- 
+        </controls:Pivot.Title>
+        <controls:PivotItem Header="{Binding Palestrante.Twitter, StringFormat=@\{0\}}" Margin="12,0">
+            <StackPanel>
+                <TextBlock Text="Ultimos tweets"/>
+                <ListBox ItemsSource="{Binding UltimosTweets}"></ListBox>
+            </StackPanel>
+        </controls:PivotItem>
+        <controls:PivotItem Header="Bio" Margin="12,0">
+            <TextBlock TextWrapping="Wrap" Text="{Binding Palestrante.Bio}" TextOptions.TextHintingMode="Animated"/>
+        </controls:PivotItem>
+    </controls:Pivot>
+
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">

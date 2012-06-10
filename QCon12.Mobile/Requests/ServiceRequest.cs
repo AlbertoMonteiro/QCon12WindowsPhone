@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 
 namespace QCon12.Mobile.Requests
 {
-    public abstract class AzureServiceRequest<T>
+    public abstract class ServiceRequest<T>
     {
         protected readonly string controller;
         private string additional;
 #if DEBUG
-        protected const string URL = @"http://192.168.25.2/qcon12/api/";
+        protected string URL = @"http://192.168.25.2/qcon12/api/";
 #else
-        protected const string URL = @"http://qcon12sp.azurewebsites.net/api/";
+        protected string URL = @"http://qcon12sp.azurewebsites.net/api/";
 #endif
 
 
-        protected AzureServiceRequest(string controller)
+        protected ServiceRequest(string controller = "")
         {
             this.controller = controller;
         }

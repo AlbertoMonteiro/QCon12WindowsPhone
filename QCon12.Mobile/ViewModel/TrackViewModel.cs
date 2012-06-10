@@ -39,7 +39,7 @@ namespace QCon12.Mobile.ViewModel
 
         private async void LoadTrack()
         {
-            var trackService = new TracksAzureRequest();
+            var trackService = new TracksRequest();
             var track = await trackService.Get(id);
             Track = track;
         }

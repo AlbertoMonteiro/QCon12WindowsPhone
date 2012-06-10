@@ -20,10 +20,10 @@
 				<ControlTemplate TargetType="controls:PanoramaItem">
 					<Grid Background="{TemplateBinding Background}" Margin="12,0,0,0">
 						<Grid.RowDefinitions>
-							<RowDefinition Height="auto"/>
+							<RowDefinition Height="12"/>
 							<RowDefinition Height="*"/>
 						</Grid.RowDefinitions>						
-						<ContentControl x:Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" Margin="0,-2,0,0" HorizontalAlignment="Left" >
+						<ContentControl x:Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" >
 						<ContentControl.RenderTransform>
 							<TranslateTransform x:Name="headerTransform"/>
 						</ContentControl.RenderTransform>

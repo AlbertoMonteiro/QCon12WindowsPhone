@@ -86,11 +86,16 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tweet.cs" />
+    <Compile Include="PalestranteView.xaml.cs">
+      <DependentUpon>PalestranteView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\AzureServiceRequest.cs" />
-    <Compile Include="Requests\PalestrantesAzureRequest.cs" />
-    <Compile Include="Requests\PalestrasAzureRequest.cs" />
-    <Compile Include="Requests\TracksAzureRequest.cs" />
+    <Compile Include="Requests\ServiceRequest.cs" />
+    <Compile Include="Requests\PalestrantesRequest.cs" />
+    <Compile Include="Requests\PalestrasRequest.cs" />
+    <Compile Include="Requests\TracksRequest.cs" />
+    <Compile Include="Requests\TweetRequest.cs" />
     <Compile Include="TrackView.xaml.cs">
       <DependentUpon>TrackView.xaml</DependentUpon>
     </Compile>
@@ -105,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PalestranteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

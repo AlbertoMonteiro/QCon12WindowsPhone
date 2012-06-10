@@ -42,7 +42,12 @@
                 </ListBox>
             </controls:PanoramaItem>
             <controls:PanoramaItem Header="Palestrantes">
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Palestrantes}">
+                <ListBox x:Name="PalestrantesList" Margin="0,0,-12,0" ItemsSource="{Binding Palestrantes}">
+                	<i:Interaction.Triggers>
+                		<i:EventTrigger EventName="Tap">
+                			<Command:EventToCommand Command="{Binding PalestranteSelected}" CommandParameter="{Binding SelectedItem, ElementName=PalestrantesList}" />
+                		</i:EventTrigger>
+                	</i:Interaction.Triggers>
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <toolkit:WrapPanel Orientation="Horizontal" />

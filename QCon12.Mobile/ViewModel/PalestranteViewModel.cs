@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight;
 using QCon12.Mobile.Models;
@@ -14,6 +15,7 @@ namespace QCon12.Mobile.ViewModel
 
         public PalestranteViewModel(bool isInDesignModeStatic, NavigationService navigationService)
         {
+            UltimosTweets = new ObservableCollection<Tweet>();
             this.navigationService = navigationService;
 
             if (isInDesignModeStatic)
@@ -23,6 +25,7 @@ namespace QCon12.Mobile.ViewModel
         }
 
         public Palestrante Palestrante { get; set; }
+        public ObservableCollection<Tweet> UltimosTweets { get; set; }
 
         private void Ready(object sender, NavigationEventArgs args)
         {
@@ -30,19 +33,33 @@ namespace QCon12.Mobile.ViewModel
             {
                 id = Convert.ToInt32(navigationService.GetParameter("id", "0"));
                 LoadPalestrante();
+                /*LoadTweets();*/
             }
+        }
+
+        private async void LoadTweets()
+        {
+            var tweetRequest = new TweetRequest(Palestrante.Twitter);
+            var tweets = await tweetRequest.List();
+            foreach (var tweet in tweets)
+                UltimosTweets.Add(tweet);
         }
 
         private async void LoadPalestrante()
         {
-            var palestrantesAzureRequest = new PalestrantesAzureRequest();
-            var palestrante = await palestrantesAzureRequest.Get(id);
+            var palestrantesRequest = new PalestrantesRequest();
+            var palestrante = await palestrantesRequest.Get(id);
             Palestrante = palestrante;
         }
 
         private void LoadDesignData()
         {
-            Palestrante = new Palestrante("Elemar Jr", "http://qconsp.com/images/palestrantes/elemar-junior.jpg?1339080693");
+            Palestrante = new Palestrante("Elemar Jr", "http://qconsp.com/images/palestrantes/elemar-junior.jpg?1339080693")
+            {
+                Bio = @"Elemar Júnior. Gerente de Pesquisa e Desenvolvimento na Promob. Na empresa há 14 anos. Desenvolve usando tecnologias Microsoft desde sua infância. Utiliza .net desde sua primeira versão. Em 2012, foi reconhecido como Microsoft MVP em C#. Especialista em computação gráfica, CAD e CAM.",
+                Twitter = "elemarjr",
+                Id = 1
+            };
         }
     }
 }
