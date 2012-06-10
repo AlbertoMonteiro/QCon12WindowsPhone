@@ -19,5 +19,10 @@ namespace QCon12.Mobile
         {
             InitializeComponent();
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using AlbertoMonteiroWP7Tools.Navigation;
 using GalaSoft.MvvmLight;
 
 namespace QCon12.Mobile.ViewModel
@@ -10,14 +11,20 @@ namespace QCon12.Mobile.ViewModel
     {
         private static MainViewModel _main;
         private static TrackViewModel _track;
+        private static NavigationService navigationService;
+
+        static ViewModelLocator()
+        {
+            navigationService = new NavigationService();
+        }
 
         /// <summary>
         ///   Initializes a new instance of the ViewModelLocator class.
         /// </summary>
         public ViewModelLocator()
         {
-            _main = new MainViewModel(ViewModelBase.IsInDesignModeStatic);
-            _track = new TrackViewModel(ViewModelBase.IsInDesignModeStatic);
+            _main = new MainViewModel(ViewModelBase.IsInDesignModeStatic, navigationService);
+            _track = new TrackViewModel(ViewModelBase.IsInDesignModeStatic, navigationService);
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This non-static member is needed for data binding purposes.")]

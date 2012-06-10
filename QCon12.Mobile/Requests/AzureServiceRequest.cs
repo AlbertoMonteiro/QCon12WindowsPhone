@@ -12,6 +12,7 @@ namespace QCon12.Mobile.Requests
     public abstract class AzureServiceRequest<T>
     {
         protected readonly string controller;
+        private string additional;
 #if DEBUG
         protected const string URL = @"http://192.168.25.2/qcon12/api/";
 #else
@@ -31,6 +32,7 @@ namespace QCon12.Mobile.Requests
 
         public async Task<T> Get(int id)
         {
+            additional = "/" + id;
             return await DownloadAndDeserialize<T>();
         }
 
@@ -38,8 +40,8 @@ namespace QCon12.Mobile.Requests
         {
             var request = new WebClient();
             GlobalLoading.Instance.PushLoading();
-            
-            var str = await request.DownloadStringTaskAsync(new Uri(URL + controller));
+            var uri = new Uri(URL + controller + additional);
+            var str = await request.DownloadStringTaskAsync(uri);
 #if DEBUG
             Thread.Sleep(1000); 
 #endif

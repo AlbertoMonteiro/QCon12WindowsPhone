@@ -8,6 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -20,7 +22,12 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Panorama Title="QCon 12 SP" TitleTemplate="{StaticResource TitleTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" ItemContainerStyle="{StaticResource PanoramaItemStyle}">
             <controls:PanoramaItem Header="Tracks" HeaderTemplate="{StaticResource HeaderTemplate}">
-                <ListBox ItemsSource="{Binding Tracks}">
+                <ListBox Name="TrackList" ItemsSource="{Binding Tracks}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Tap">
+                            <Command:EventToCommand Command="{Binding TrackSelected}" CommandParameter="{Binding ElementName=TrackList, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
