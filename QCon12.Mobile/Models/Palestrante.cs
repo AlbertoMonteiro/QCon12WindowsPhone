@@ -1,8 +1,8 @@
-using System.ComponentModel;
+using GalaSoft.MvvmLight;
 
 namespace QCon12.Mobile.Models
 {
-    public class Palestrante : INotifyPropertyChanged
+    public class Palestrante : ViewModelBase
     {
         public Palestrante() {}
 
@@ -18,6 +18,5 @@ namespace QCon12.Mobile.Models
         public string Twitter { get; set; }
         public string Foto { get; set; }
         public string Email { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

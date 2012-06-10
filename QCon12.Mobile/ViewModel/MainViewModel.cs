@@ -27,7 +27,7 @@ namespace QCon12.Mobile.ViewModel
             }
 
             TrackSelected = new RelayCommand<Track>(track => navigationService.NavigateTo(string.Format("/TrackView.xaml?id={0}", track.Id)));
-            PalestranteSelected = new RelayCommand<Palestrante>(palestrante => navigationService.NavigateTo(string.Format("/PalestranteView.xaml?id={0}", palestrante.Id)));
+            PalestranteSelected = new RelayCommand<Palestrante>(palestrante => navigationService.NavigateTo(string.Format("/ViewPalestrante.xaml?id={0}", palestrante.Id)));
         }
 
         public ObservableCollection<Track> Tracks { get; set; }
@@ -67,24 +67,27 @@ namespace QCon12.Mobile.ViewModel
         {
             var tracksRequest = new TracksRequest();
             var tracks = await tracksRequest.List();
-            foreach (var track in tracks)
-                Tracks.Add(track);
+            if (tracks != null)
+                foreach (var track in tracks)
+                    Tracks.Add(track);
         }
 
         private async void LoadPalestrantes()
         {
             var palestrantesRequest = new PalestrantesRequest();
             var palestrantes = await palestrantesRequest.List();
-            foreach (var palestrante in palestrantes)
-                Palestrantes.Add(palestrante);
+            if (palestrantes != null)
+                foreach (var palestrante in palestrantes)
+                    Palestrantes.Add(palestrante);
         }
 
         private async void LoadPalestras()
         {
             var palestrasAzureRequest = new PalestrasRequest();
             var palestras = await palestrasAzureRequest.List();
-            foreach (var palestra in palestras)
-                Palestras.Add(palestra);
+            if (palestras != null)
+                foreach (var palestra in palestras)
+                    Palestras.Add(palestra);
         }
     }
 }

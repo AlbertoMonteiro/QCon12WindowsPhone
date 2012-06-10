@@ -13,9 +13,9 @@ using Microsoft.Phone.Controls;
 
 namespace QCon12.Mobile
 {
-    public partial class PalestranteView : PhoneApplicationPage
+    public partial class ViewPalestrante : PhoneApplicationPage
     {
-        public PalestranteView()
+        public ViewPalestrante()
         {
             InitializeComponent();
         }

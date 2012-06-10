@@ -29,11 +29,10 @@ namespace QCon12.Mobile.ViewModel
 
         private void Ready(object sender, NavigationEventArgs args)
         {
-            if (args.Uri.ToString().Contains("PalestranteView.xaml"))
+            if (args.Uri.ToString().Contains("ViewPalestrante.xaml"))
             {
                 id = Convert.ToInt32(navigationService.GetParameter("id", "0"));
                 LoadPalestrante();
-                /*LoadTweets();*/
             }
         }
 
@@ -41,15 +40,23 @@ namespace QCon12.Mobile.ViewModel
         {
             var tweetRequest = new TweetRequest(Palestrante.Twitter);
             var tweets = await tweetRequest.List();
-            foreach (var tweet in tweets)
-                UltimosTweets.Add(tweet);
+            if (tweets != null)
+            {
+                UltimosTweets.Clear();
+                foreach (var tweet in tweets)
+                    UltimosTweets.Add(tweet);
+            }
         }
 
         private async void LoadPalestrante()
         {
             var palestrantesRequest = new PalestrantesRequest();
             var palestrante = await palestrantesRequest.Get(id);
-            Palestrante = palestrante;
+            if (palestrante != null)
+            {
+                Palestrante = palestrante;
+                LoadTweets();
+            }
         }
 
         private void LoadDesignData()
@@ -60,6 +67,13 @@ namespace QCon12.Mobile.ViewModel
                 Twitter = "elemarjr",
                 Id = 1
             };
+
+            UltimosTweets.Add(new Tweet()
+            {
+                created_at = DateTime.Now,
+                source = "here",
+                text = "Passamos de 100.000 downloads na google play com o app Dieta e Saúde… no itunnes já passamos de 700.00 #rocks"
+            });
         }
     }
 }

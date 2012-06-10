@@ -20,7 +20,7 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Panorama Title="QCon 12 SP" TitleTemplate="{StaticResource TitleTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" ItemContainerStyle="{StaticResource PanoramaItemStyle}">
+        <controls:Panorama Title="QCon 12 SP" TitleTemplate="{StaticResource TitleTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}">
             <controls:PanoramaItem Header="Tracks" HeaderTemplate="{StaticResource HeaderTemplate}">
                 <ListBox Name="TrackList" ItemsSource="{Binding Tracks}">
                     <i:Interaction.Triggers>

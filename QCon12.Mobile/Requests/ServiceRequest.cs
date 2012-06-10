@@ -6,6 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using AlbertoMonteiroWP7Tools.Controls;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using QCon12.Mobile.Utils;
 
 namespace QCon12.Mobile.Requests
 {
@@ -13,8 +15,10 @@ namespace QCon12.Mobile.Requests
     {
         protected readonly string controller;
         private string additional;
+        private int count = 0;
 #if DEBUG
         protected string URL = @"http://192.168.25.2/qcon12/api/";
+        protected JsonSerializerSettings settings;
 #else
         protected string URL = @"http://qcon12sp.azurewebsites.net/api/";
 #endif
@@ -22,6 +26,7 @@ namespace QCon12.Mobile.Requests
 
         protected ServiceRequest(string controller = "")
         {
+            settings = new JsonSerializerSettings();
             this.controller = controller;
         }
 
@@ -38,17 +43,33 @@ namespace QCon12.Mobile.Requests
 
         private async Task<TR> DownloadAndDeserialize<TR>()
         {
-            var request = new WebClient();
+            var instance = default(TR);
             GlobalLoading.Instance.PushLoading();
-            var uri = new Uri(URL + controller + additional);
-            var str = await request.DownloadStringTaskAsync(uri);
+            var keepTrying = true;
+            while (keepTrying)
+            {
+                var request = new WebClient();
+                var uri = new Uri(URL + controller + additional);
+                try
+                {
+                    var str = await request.DownloadStringTaskAsync(uri);
 #if DEBUG
-            Thread.Sleep(1000); 
+                    Thread.Sleep(1000);
 #endif
-            var settings = new JsonSerializerSettings();
-            var serializer = JsonSerializer.Create(settings);
-            var stringReader = new StringReader(str);
-            var instance = serializer.Deserialize<TR>(new JsonTextReader(stringReader));
+                    var serializer = JsonSerializer.Create(settings);
+                    using (var stringReader = new StringReader(str))
+                    {
+                        instance = serializer.Deserialize<TR>(new JsonTextReader(stringReader));
+                        stringReader.Close();
+                        keepTrying = false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (count++ < 3)
+                        keepTrying = true;
+                }
+            }
             GlobalLoading.Instance.PopLoading();
             return instance;
         }
