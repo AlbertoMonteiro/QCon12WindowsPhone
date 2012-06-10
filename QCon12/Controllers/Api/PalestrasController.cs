@@ -34,6 +34,17 @@ namespace QCon12.Controllers.Api
             return palestra;
         }
 
+        // GET api/Palestras/FromTrack/5
+        [HttpGet]
+        public IEnumerable<Palestra> FromTrack(int id)
+        {
+            var palestras = db.Palestras.Include("Track").Include("Palestrante").Where(x => x.Track.Id == id).ToList();
+            if (palestras == null)
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+
+            return palestras;
+        }
+
         // PUT api/Palestras/5
         public HttpResponseMessage PutPalestra(int id, Palestra palestra)
         {

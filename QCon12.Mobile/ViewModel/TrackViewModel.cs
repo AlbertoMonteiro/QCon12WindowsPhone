@@ -41,7 +41,10 @@ namespace QCon12.Mobile.ViewModel
         {
             var trackService = new TracksRequest();
             var track = await trackService.Get(id);
-            Track = track;
+            if (track != null)
+            {
+                Track = track;
+            }
         }
 
         private void LoadDesignData()
