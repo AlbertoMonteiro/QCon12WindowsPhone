@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Threading;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight;
 using QCon12.Mobile.Models;
