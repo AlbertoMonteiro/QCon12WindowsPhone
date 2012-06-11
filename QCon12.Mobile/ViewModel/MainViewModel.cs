@@ -24,8 +24,6 @@ namespace QCon12.Mobile.ViewModel
             else
             {
                 LoadTracks();
-                LoadPalestrantes();
-                LoadPalestras();
             }
 
             TrackSelected = new RelayCommand<Track>(track => navigationService.NavigateTo(string.Format("/TrackView.xaml?id={0}", track.Id)));
@@ -74,6 +72,8 @@ namespace QCon12.Mobile.ViewModel
             if (tracks != null)
                 foreach (var track in tracks)
                     Tracks.Add(track);
+
+            LoadPalestrantes();
         }
 
         private async void LoadPalestrantes()
@@ -88,6 +88,7 @@ namespace QCon12.Mobile.ViewModel
                     foreach (var palestrante in palestrantes)
                         Palestrantes.Add(palestrante);
                 canLoadPalestrantes = true;
+                LoadPalestras();
             }
         }
 
