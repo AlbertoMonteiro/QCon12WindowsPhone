@@ -44,7 +44,17 @@ namespace QCon12.Mobile.ViewModel
             if (track != null)
             {
                 Track = track;
+                LoadPalestras();
             }
+        }
+
+        private async void LoadPalestras()
+        {
+            var palestrasRequest = new PalestrasRequest();
+            var palestras = await palestrasRequest.FromTrack(Track.Id);
+            if (palestras != null)
+                foreach (var palestra in palestras)
+                    Palestras.Add(palestra);
         }
 
         private void LoadDesignData()

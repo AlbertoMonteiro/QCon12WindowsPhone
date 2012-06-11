@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
@@ -10,8 +8,6 @@ using System.Net.Http;
 using System.Web.Http;
 using QCon12.Models;
 
-#endregion
-
 namespace QCon12.Controllers.Api
 {
     public class PalestrasController : ApiController
@@ -19,9 +15,10 @@ namespace QCon12.Controllers.Api
         private readonly QCon12Context db = QCon12Context.Instance;
 
         // GET api/Palestras
-        public IEnumerable<Palestra> GetPalestras()
+        [Queryable(ResultLimit = 10)]
+        public IQueryable<Palestra> GetPalestras()
         {
-            return db.Palestras.AsEnumerable();
+            return db.Palestras.AsQueryable();
         }
 
         // GET api/Palestras/5

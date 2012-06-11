@@ -14,8 +14,8 @@ namespace QCon12.Mobile.Requests
     public abstract class ServiceRequest<T>
     {
         protected readonly string controller;
-        private string additional;
-        private int count = 0;
+        protected string additional;
+        protected int count = 0;
 #if DEBUG
         protected string URL = @"http://192.168.25.2/qcon12/api/";
         protected JsonSerializerSettings settings;
@@ -41,7 +41,7 @@ namespace QCon12.Mobile.Requests
             return await DownloadAndDeserialize<T>();
         }
 
-        private async Task<TR> DownloadAndDeserialize<TR>()
+        protected async Task<TR> DownloadAndDeserialize<TR>()
         {
             var instance = default(TR);
             GlobalLoading.Instance.PushLoading();

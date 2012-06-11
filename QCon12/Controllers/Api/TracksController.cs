@@ -1,7 +1,4 @@
-﻿#region
-
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -10,8 +7,6 @@ using System.Net.Http;
 using System.Web.Http;
 using QCon12.Models;
 
-#endregion
-
 namespace QCon12.Controllers.Api
 {
     public class TracksController : ApiController
@@ -19,9 +14,11 @@ namespace QCon12.Controllers.Api
         private readonly QCon12Context db = QCon12Context.Instance;
 
         // GET api/Tracks
-        public IEnumerable<Track> GetTracks()
+        [Queryable(ResultLimit = 10)]
+        public IQueryable<Track> GetTracks()
         {
-            return db.Tracks.AsEnumerable();
+            var tracks = db.Tracks.AsQueryable().ToList();
+            return tracks.AsQueryable();
         }
 
         // GET api/Tracks/5

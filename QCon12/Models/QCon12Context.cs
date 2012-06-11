@@ -24,8 +24,15 @@ namespace QCon12.Models
         {
             get
             {
-                return _instance ?? (_instance = new QCon12Context());
+                if(_instance == null)
+                    Reload();
+                return _instance;
             }
+        }
+
+        public static void Reload()
+        {
+            _instance = new QCon12Context();
         }
 
         public DbSet<Palestrante> Palestrantes { get; set; }

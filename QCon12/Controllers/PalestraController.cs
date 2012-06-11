@@ -60,7 +60,8 @@ namespace QCon12.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(palestra).State = EntityState.Modified;
+                var entry = db.Entry(palestra);
+                entry.State = EntityState.Modified;
                 return RedirectToAction("Index");
             }
             LoadPalestrantesAndTracksToViewBag();

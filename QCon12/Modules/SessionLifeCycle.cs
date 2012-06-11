@@ -20,6 +20,7 @@ namespace QCon12.Modules
         private static void ContextEndRequest(object sender, EventArgs e)
         {
             QCon12Context.Instance.SaveChanges();
+            QCon12Context.Reload();
         }
     }
 }
