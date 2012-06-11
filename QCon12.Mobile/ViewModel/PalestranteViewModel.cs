@@ -21,7 +21,16 @@ namespace QCon12.Mobile.ViewModel
             if (isInDesignModeStatic)
                 LoadDesignData();
             else
+            {
                 navigationService.Navigated += Ready;
+                navigationService.Navigating += GoOut;
+            }
+        }
+
+        private void GoOut(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back)
+                UltimosTweets.Clear();
         }
 
         public Palestrante Palestrante { get; set; }
@@ -41,11 +50,8 @@ namespace QCon12.Mobile.ViewModel
             var tweetRequest = new TweetRequest(Palestrante.Twitter);
             var tweets = await tweetRequest.List();
             if (tweets != null)
-            {
-                UltimosTweets.Clear();
                 foreach (var tweet in tweets)
                     UltimosTweets.Add(tweet);
-            }
         }
 
         private async void LoadPalestrante()

@@ -14,13 +14,13 @@ namespace QCon12.Controllers.Api
     {
         private readonly QCon12Context db = QCon12Context.Instance;
 
-        // GET api/Palestrantes
-        public IEnumerable<Palestrante> GetPalestrantes()
+        [Queryable(ResultLimit = 10)]
+        public IQueryable<Palestrante> GetPalestrantes()
         {
-            return db.Palestrantes.AsEnumerable();
+            var palestrantes = db.Palestrantes.AsQueryable().ToList();
+            return palestrantes.AsQueryable();
         }
 
-        // GET api/Palestrantes/5
         public Palestrante GetPalestrante(int id)
         {
             var palestrante = db.Palestrantes.Find(id);
@@ -30,7 +30,6 @@ namespace QCon12.Controllers.Api
             return palestrante;
         }
 
-        // PUT api/Palestrantes/5
         public HttpResponseMessage PutPalestrante(int id, Palestrante palestrante)
         {
             if (ModelState.IsValid && id == palestrante.Id)
@@ -50,7 +49,6 @@ namespace QCon12.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        // POST api/Palestrantes
         public HttpResponseMessage PostPalestrante(Palestrante palestrante)
         {
             if (ModelState.IsValid)
@@ -65,7 +63,6 @@ namespace QCon12.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        // DELETE api/Palestrantes/5
         public HttpResponseMessage DeletePalestrante(int id)
         {
             var palestrante = db.Palestrantes.Find(id);

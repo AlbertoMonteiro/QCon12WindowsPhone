@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using AlbertoMonteiroWP7Tools.Navigation;
@@ -11,6 +12,8 @@ namespace QCon12.Mobile.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        private bool canLoadPalestrantes = true;
+
         public MainViewModel(bool isInDesignModeStatic, NavigationService navigationService)
         {
             Tracks = new ObservableCollection<Track>();
@@ -28,6 +31,7 @@ namespace QCon12.Mobile.ViewModel
 
             TrackSelected = new RelayCommand<Track>(track => navigationService.NavigateTo(string.Format("/TrackView.xaml?id={0}", track.Id)));
             PalestranteSelected = new RelayCommand<Palestrante>(palestrante => navigationService.NavigateTo(string.Format("/ViewPalestrante.xaml?id={0}", palestrante.Id)));
+            MaisPalestrante = new RelayCommand(LoadPalestrantes);
         }
 
         public ObservableCollection<Track> Tracks { get; set; }
@@ -35,6 +39,7 @@ namespace QCon12.Mobile.ViewModel
         public ObservableCollection<Palestrante> Palestrantes { get; set; }
         public RelayCommand<Track> TrackSelected { get; set; }
         public RelayCommand<Palestrante> PalestranteSelected { get; set; }
+        public RelayCommand MaisPalestrante { get; set; }
 
         private void LoadDesignData()
         {
@@ -74,11 +79,17 @@ namespace QCon12.Mobile.ViewModel
 
         private async void LoadPalestrantes()
         {
-            var palestrantesRequest = new PalestrantesRequest();
-            var palestrantes = await palestrantesRequest.List();
-            if (palestrantes != null)
-                foreach (var palestrante in palestrantes)
-                    Palestrantes.Add(palestrante);
+            if (canLoadPalestrantes)
+            {
+                canLoadPalestrantes = false;
+                var palestrantesRequest = new PalestrantesRequest();
+                var palestrantes = await palestrantesRequest.List(Palestrantes.Count);
+
+                if (palestrantes != null)
+                    foreach (var palestrante in palestrantes)
+                        Palestrantes.Add(palestrante);
+                canLoadPalestrantes = true;
+            }
         }
 
         private async void LoadPalestras()

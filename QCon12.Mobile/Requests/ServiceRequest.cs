@@ -6,8 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AlbertoMonteiroWP7Tools.Controls;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using QCon12.Mobile.Utils;
 
 namespace QCon12.Mobile.Requests
 {
@@ -16,13 +14,12 @@ namespace QCon12.Mobile.Requests
         protected readonly string controller;
         protected string additional;
         protected int count = 0;
+        protected JsonSerializerSettings settings;
 #if DEBUG
         protected string URL = @"http://192.168.25.2/qcon12/api/";
-        protected JsonSerializerSettings settings;
 #else
         protected string URL = @"http://qcon12sp.azurewebsites.net/api/";
 #endif
-
 
         protected ServiceRequest(string controller = "")
         {
@@ -30,8 +27,10 @@ namespace QCon12.Mobile.Requests
             this.controller = controller;
         }
 
-        public async Task<List<T>> List()
+        public async Task<List<T>> List(int skip = 0)
         {
+            if (skip != 0)
+                additional = "/?$skip=" + skip;
             return await DownloadAndDeserialize<List<T>>();
         }
 
@@ -67,7 +66,7 @@ namespace QCon12.Mobile.Requests
                 catch (Exception e)
                 {
                     if (count++ < 3)
-                        keepTrying = true;
+                        keepTrying = false;
                 }
             }
             GlobalLoading.Instance.PopLoading();

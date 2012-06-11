@@ -10,6 +10,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+    xmlns:albertotools="clr-namespace:AlbertoMonteiroWP7Tools.Controls;assembly=AlbertoMonteiroWP7Tools"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -42,7 +43,7 @@
                 </ListBox>
             </controls:PanoramaItem>
             <controls:PanoramaItem Header="Palestrantes">
-                <ListBox x:Name="PalestrantesList" Margin="0,0,-12,0" ItemsSource="{Binding Palestrantes}">
+                <ListBox x:Name="PalestrantesList" Margin="0,0,-12,0" ItemsSource="{Binding Palestrantes}" albertotools:ScrollViewerMonitor.AtEndCommand="{Binding MaisPalestrante}">
                 	<i:Interaction.Triggers>
                 		<i:EventTrigger EventName="Tap">
                 			<Command:EventToCommand Command="{Binding PalestranteSelected}" CommandParameter="{Binding SelectedItem, ElementName=PalestrantesList}" />

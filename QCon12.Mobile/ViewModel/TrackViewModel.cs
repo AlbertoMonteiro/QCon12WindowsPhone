@@ -22,14 +22,24 @@ namespace QCon12.Mobile.ViewModel
             if (isInDesignModeStatic)
                 LoadDesignData();
             else
+            {
                 navigationService.Navigated += Ready;
+                navigationService.Navigating += GoOut;
+            }
         }
 
         public Track Track { get; set; }
         public ObservableCollection<Palestra> Palestras { get; set; }
 
+        private void GoOut(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back)
+                Palestras.Clear();
+        }
+
         private void Ready(object sender, NavigationEventArgs args)
         {
+            //Palestras.Clear();
             if (args.Uri.ToString().Contains("TrackView.xaml"))
             {
                 id = Convert.ToInt32(navigationService.GetParameter("id", "0"));
