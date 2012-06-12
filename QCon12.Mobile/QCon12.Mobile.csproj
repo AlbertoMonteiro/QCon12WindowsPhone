@@ -80,6 +80,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cache\ApplicationCache.cs" />
     <Compile Include="Models\Palestra.cs" />
     <Compile Include="Models\Palestrante.cs" />
     <Compile Include="Models\Track.cs" />
