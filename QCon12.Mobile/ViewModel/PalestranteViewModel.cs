@@ -48,7 +48,7 @@ namespace QCon12.Mobile.ViewModel
         private async void LoadTweets()
         {
             var tweetRequest = new TweetRequest(Palestrante.Twitter);
-            var tweets = await tweetRequest.List();
+            var tweets = await tweetRequest.BaseList();
             if (tweets != null)
                 foreach (var tweet in tweets)
                     UltimosTweets.Add(tweet);

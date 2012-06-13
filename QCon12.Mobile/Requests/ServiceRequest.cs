@@ -6,11 +6,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using AlbertoMonteiroWP7Tools.Controls;
 using Newtonsoft.Json;
+using QCon12.Mobile.Cache;
 
 namespace QCon12.Mobile.Requests
 {
     public abstract class ServiceRequest<T>
     {
+        protected readonly CacheContext cacheContext;
         protected readonly string controller;
         protected string additional;
         protected int count = 0;
@@ -25,16 +27,17 @@ namespace QCon12.Mobile.Requests
         {
             settings = new JsonSerializerSettings();
             this.controller = controller;
+            cacheContext = new CacheContext();
         }
 
-        public async Task<List<T>> List(int skip = 0)
+        public async Task<List<T>> BaseList(int skip = 0)
         {
             if (skip != 0)
                 additional = "/?$skip=" + skip;
             return await DownloadAndDeserialize<List<T>>();
         }
 
-        public async Task<T> Get(int id)
+        public async Task<T> BaseGet(int id)
         {
             additional = "/" + id;
             return await DownloadAndDeserialize<T>();

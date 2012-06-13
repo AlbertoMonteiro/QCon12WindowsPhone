@@ -7,22 +7,25 @@ namespace QCon12.Mobile.ViewModel
     public class ViewModelLocator
     {
         private static readonly NavigationService navigationService;
+        private static MainViewModel main;
+        private static TrackViewModel track;
+        private static PalestranteViewModel palestrante;
 
         static ViewModelLocator()
         {
             navigationService = new NavigationService();
-            Main = new MainViewModel(ViewModelBase.IsInDesignModeStatic, navigationService);
-            Track = new TrackViewModel(ViewModelBase.IsInDesignModeStatic, navigationService);
-            Palestrante = new PalestranteViewModel(ViewModelBase.IsInDesignModeStatic, navigationService);
+            main = new MainViewModel(ViewModelBase.IsInDesignModeStatic, navigationService);
+            track = new TrackViewModel(ViewModelBase.IsInDesignModeStatic, navigationService);
+            palestrante = new PalestranteViewModel(ViewModelBase.IsInDesignModeStatic, navigationService);
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This non-static member is needed for data binding purposes.")]
-        public static MainViewModel Main { get; private set; }
+        public MainViewModel Main { get { return main; } }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This non-static member is needed for data binding purposes.")]
-        public static TrackViewModel Track { get; private set; }
+        public TrackViewModel Track { get { return track; } }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This non-static member is needed for data binding purposes.")]
-        public static PalestranteViewModel Palestrante { get; private set; }
+        public PalestranteViewModel Palestrante { get { return palestrante; } }
     }
 }
