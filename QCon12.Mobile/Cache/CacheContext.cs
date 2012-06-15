@@ -12,6 +12,7 @@ namespace QCon12.Mobile.Cache
             {
                 CreateDatabase();
             }
+            DeferredLoadingEnabled = true;
         }
 
         public Table<Track> Tracks

@@ -45,7 +45,7 @@
 							<ColumnDefinition Width="*"></ColumnDefinition>
 						</Grid.ColumnDefinitions>
 						<TextBlock Grid.Column="0" Text="{Binding Horario, StringFormat='Horario: {0:dd/MM/yyyy HH:mm}'}" FontSize="16" TextWrapping="Wrap" TextTrimming="WordEllipsis" VerticalAlignment="Top"/>
-						<TextBlock Grid.Column="1" Text="{Binding Palestrante.Nome}" FontSize="16" TextWrapping="Wrap" TextTrimming="WordEllipsis" VerticalAlignment="Top" TextAlignment="Right"/>
+						<!--<TextBlock Grid.Column="1" Text="{Binding Palestrante.Nome}" FontSize="16" TextWrapping="Wrap" TextTrimming="WordEllipsis" VerticalAlignment="Top" TextAlignment="Right"/>-->
 					</Grid>					
 				</StackPanel>
 				<TextBlock Text="{Binding Track.Nome, StringFormat=Track: \{0\}}" Margin="0" FontSize="16" Width="372" TextTrimming="WordEllipsis" TextOptions.TextHintingMode="Animated" FontFamily="Calibri" TextWrapping="Wrap" />

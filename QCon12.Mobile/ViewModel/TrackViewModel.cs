@@ -81,7 +81,6 @@ namespace QCon12.Mobile.ViewModel
                 Descricao = "Conteudo da palestra 1 que fala sobre alguma coisa que eu não sei mais o que escrever aqui",
                 Horario = new DateTime(2012, 08, 4, 12, 00, 00),
                 Nome = "Palestra 1",
-                Palestrante = palestrante,
                 Track = Track
             });
 
@@ -90,7 +89,6 @@ namespace QCon12.Mobile.ViewModel
                 Descricao = "Conteudo da palestra 2 que fala sobre alguma coisa que eu não sei mais o que escrever aqui",
                 Horario = new DateTime(2012, 8, 5, 15, 00, 00),
                 Nome = "Palestra 2",
-                Palestrante = palestrante,
                 Track = Track
             });
         }

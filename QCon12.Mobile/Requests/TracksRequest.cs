@@ -15,8 +15,11 @@ namespace QCon12.Mobile.Requests
             if (!tracks.Any())
             {
                 tracks = await BaseList(skip);
-                cacheContext.Tracks.InsertAllOnSubmit(tracks);
-                cacheContext.SubmitChanges();
+                if (tracks != null)
+                {
+                    cacheContext.Tracks.InsertAllOnSubmit(tracks);
+                    cacheContext.SubmitChanges(); 
+                }
             }
             return tracks;
         }
@@ -27,8 +30,11 @@ namespace QCon12.Mobile.Requests
             if (track == null)
             {
                 track = await BaseGet(id);
-                cacheContext.Tracks.InsertOnSubmit(track);
-                cacheContext.SubmitChanges();
+                if (track != null)
+                {
+                    cacheContext.Tracks.InsertOnSubmit(track);
+                    cacheContext.SubmitChanges(); 
+                }
             }
             return track;
         }

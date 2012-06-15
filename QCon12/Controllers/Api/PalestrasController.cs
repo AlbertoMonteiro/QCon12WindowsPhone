@@ -18,7 +18,7 @@ namespace QCon12.Controllers.Api
         [Queryable(ResultLimit = 10)]
         public IQueryable<Palestra> GetPalestras()
         {
-            return db.Palestras.AsQueryable();
+            return db.Palestras.Include("Track").Include("Palestrante").AsQueryable();
         }
 
         // GET api/Palestras/5

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using AlbertoMonteiroWP7Tools.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -23,12 +24,14 @@ namespace QCon12.Mobile.ViewModel
                 LoadDesignData();
             else
             {
-                LoadTracks();
+                LoadTracks().Wait();
+                LoadPalestrantes().Wait();
+                LoadPalestras();
             }
 
             TrackSelected = new RelayCommand<Track>(track => navigationService.NavigateTo(string.Format("/TrackView.xaml?id={0}", track.Id)));
             PalestranteSelected = new RelayCommand<Palestrante>(palestrante => navigationService.NavigateTo(string.Format("/ViewPalestrante.xaml?id={0}", palestrante.Id)));
-            MaisPalestrante = new RelayCommand(LoadPalestrantes);
+            MaisPalestrante = new RelayCommand(() => LoadPalestrantes());
         }
 
         public ObservableCollection<Track> Tracks { get; set; }
@@ -51,7 +54,6 @@ namespace QCon12.Mobile.ViewModel
                 Descricao = "Conteudo da palestra 1 que fala sobre alguma coisa que eu não sei mais o que escrever aqui",
                 Horario = new DateTime(2012, 08, 4, 12, 00, 00),
                 Nome = "Palestra 1",
-                Palestrante = Palestrantes.First(),
                 Track = Tracks.First()
             });
 
@@ -60,45 +62,48 @@ namespace QCon12.Mobile.ViewModel
                 Descricao = "Conteudo da palestra 2 que fala sobre alguma coisa que eu não sei mais o que escrever aqui",
                 Horario = new DateTime(2012, 8, 5, 15, 00, 00),
                 Nome = "Palestra 2",
-                Palestrante = Palestrantes.First(),
                 Track = Tracks.Last()
             });
         }
 
-        private async void LoadTracks()
+        private Task LoadTracks()
         {
             var tracksRequest = new TracksRequest();
-            var tracks = await tracksRequest.List();
-            if (tracks != null)
-                foreach (var track in tracks)
-                    Tracks.Add(track);
-
-            LoadPalestrantes();
+            return tracksRequest.List().ContinueWith(task =>
+            {
+                if (task.Result != null)
+                    foreach (var track in task.Result)
+                        Tracks.Add(track);    
+            });
+            
         }
 
-        private async void LoadPalestrantes()
+        private Task LoadPalestrantes()
         {
             if (canLoadPalestrantes)
             {
                 canLoadPalestrantes = false;
                 var palestrantesRequest = new PalestrantesRequest();
-                var palestrantes = await palestrantesRequest.List(Palestrantes.Count);
-
-                if (palestrantes != null)
-                    foreach (var palestrante in palestrantes)
-                        Palestrantes.Add(palestrante);
-                canLoadPalestrantes = true;
-                LoadPalestras();
+                return palestrantesRequest.List(Palestrantes.Count).ContinueWith(task =>
+                {
+                    if (task.Result != null)
+                        foreach (var palestrante in task.Result)
+                            Palestrantes.Add(palestrante);
+                    canLoadPalestrantes = true;    
+                });
             }
+            return null;
         }
 
-        private async void LoadPalestras()
+        private Task LoadPalestras()
         {
             var palestrasAzureRequest = new PalestrasRequest();
-            var palestras = await palestrasAzureRequest.List();
-            if (palestras != null)
-                foreach (var palestra in palestras)
-                    Palestras.Add(palestra);
+            return palestrasAzureRequest.List().ContinueWith(task =>
+            {
+                if (task.Result != null)
+                    foreach (var palestra in task.Result)
+                        Palestras.Add(palestra);
+            });
         }
     }
 }

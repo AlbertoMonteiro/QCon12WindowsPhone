@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using QCon12.Mobile.Models;
 using System.Linq;
@@ -15,8 +16,18 @@ namespace QCon12.Mobile.Requests
             if (!palestras.Any())
             {
                 palestras = await BaseList(skip);
-                cacheContext.Palestras.InsertAllOnSubmit(palestras);
-                cacheContext.SubmitChanges();
+                if (palestras != null)
+                {
+                    SynchronizationContext.Current.Post(state =>
+                    {
+                        foreach (var palestra in palestras)
+                        {
+                            var track = cacheContext.Tracks.SingleOrDefault(t => t.Nome == palestra.Track.Nome);
+                            track.Palestras.Add(new Palestra { Descricao = palestra.Descricao, Horario = palestra.Horario, Nome = palestra.Nome });
+                            cacheContext.SubmitChanges();
+                        }
+                    }, null);
+                }
             }
             return palestras;
         }
@@ -24,24 +35,30 @@ namespace QCon12.Mobile.Requests
         public async Task<Palestra> Get(int id)
         {
             Palestra palestra = cacheContext.Palestras.FirstOrDefault(p => p.Id == id);
-            if (palestra == null) 
+            if (palestra == null)
             {
                 palestra = await BaseGet(id);
-                cacheContext.Palestras.InsertOnSubmit(palestra);
-                cacheContext.SubmitChanges();
+                if (palestra != null)
+                {
+                    cacheContext.Palestras.InsertOnSubmit(palestra);
+                    cacheContext.SubmitChanges();
+                }
             }
             return palestra;
         }
 
         public async Task<IEnumerable<Palestra>> FromTrack(int id)
         {
-            var palestras = cacheContext.Palestras.Where(palestra => palestra.Track != null && palestra.Track.Id == id).AsEnumerable().ToList();
+            var palestras = cacheContext.Palestras.Where(palestra => palestra.Track != null && palestra.Track.Id == id).AsEnumerable();
             if (palestras.Any())
             {
                 additional = "/FromTrack/" + id;
-                palestras = (await DownloadAndDeserialize<IEnumerable<Palestra>>()).ToList();
-                cacheContext.Palestras.InsertAllOnSubmit(palestras);
-                cacheContext.SubmitChanges();
+                palestras = await DownloadAndDeserialize<IEnumerable<Palestra>>();
+                if (palestras != null)
+                {
+                    cacheContext.Palestras.InsertAllOnSubmit(palestras);
+                    cacheContext.SubmitChanges();
+                }
             }
             return palestras;
         }

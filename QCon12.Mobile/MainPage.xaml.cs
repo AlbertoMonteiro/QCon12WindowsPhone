@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using QCon12.Mobile.Cache;
 
 namespace QCon12.Mobile
 {
@@ -18,11 +9,11 @@ namespace QCon12.Mobile
         public MainPage()
         {
             InitializeComponent();
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            var cacheContext = new CacheContext();
+            foreach (var palestra in cacheContext.Tracks)
+            {
+                Console.WriteLine(palestra);
+            }
         }
     }
 }

@@ -15,15 +15,23 @@ namespace QCon12.Mobile.Requests
             if (!palestrantes.Any())
             {
                 palestrantes = await BaseList(skip);
-                cacheContext.Palestrantes.InsertAllOnSubmit(palestrantes);
-                cacheContext.SubmitChanges();
+                if (palestrantes != null)
+                {
+                    cacheContext.Palestrantes.InsertAllOnSubmit(palestrantes);
+                    cacheContext.SubmitChanges();
+                }
             }
             else if (palestrantes.Count <= skip)
             {
                 palestrantes = await BaseList(skip);
-                cacheContext.Palestrantes.InsertAllOnSubmit(palestrantes);
-                cacheContext.SubmitChanges();
+                if (palestrantes != null)
+                {
+                    cacheContext.Palestrantes.InsertAllOnSubmit(palestrantes);
+                    cacheContext.SubmitChanges();
+                }
             }
+            if(palestrantes != null && palestrantes.Count > 10)
+                return palestrantes.Skip(skip).Take(10).ToList();
             return palestrantes;
         }
 
@@ -33,8 +41,11 @@ namespace QCon12.Mobile.Requests
             if (palestrante == null)
             {
                 palestrante = await BaseGet(id);
-                cacheContext.Palestrantes.InsertOnSubmit(palestrante);
-                cacheContext.SubmitChanges();
+                if (palestrante != null)
+                {
+                    cacheContext.Palestrantes.InsertOnSubmit(palestrante);
+                    cacheContext.SubmitChanges();
+                }
             }
             
             return palestrante;
