@@ -23,9 +23,9 @@
             <controls:PivotItem Header="Geral">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" MinHeight="14"/>
-                        <RowDefinition Height="Auto" MinHeight="373"/>
-                        <RowDefinition Height="Auto" MinHeight="15"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>

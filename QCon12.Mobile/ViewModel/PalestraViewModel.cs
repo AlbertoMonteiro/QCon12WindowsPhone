@@ -29,7 +29,7 @@ namespace QCon12.Mobile.ViewModel
                 navigationService.Navigated += Ready;
             }
 
-            Agendar = new RelayCommand(EfeutarAgendamento);
+            Agendar = new RelayCommand(EfetuarAgendamento);
             Tweetar = new RelayCommand(Compartilhar);
         }
 
@@ -42,7 +42,7 @@ namespace QCon12.Mobile.ViewModel
             shareStatusTask.Show();
         }
 
-        private void EfeutarAgendamento()
+        private void EfetuarAgendamento()
         {
             var reminderName = string.Format("Palestra{0}", Palestra.Id);
             var scheduledAction = ScheduledActionService.Find(reminderName);
