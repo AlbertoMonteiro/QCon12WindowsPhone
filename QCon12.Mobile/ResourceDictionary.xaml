@@ -53,4 +53,14 @@
 			</StackPanel>
 		</StackPanel>
 	</DataTemplate>
+	<DataTemplate x:Key="PivotHeader32">
+		<StackPanel>
+			<TextBlock Text="{Binding .}" FontSize="42" TextWrapping="Wrap"/>
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate x:Key="PivotTemplate">
+		<StackPanel Margin="0">
+			<TextBlock Text="{Binding}" FontSize="32" TextWrapping="Wrap"/>
+		</StackPanel>
+	</DataTemplate>
 </ResourceDictionary>

@@ -9,9 +9,10 @@ namespace QCon12.Mobile.Cache
     [Table]
     public class PalestraCache : ViewModelBase
     {
+        private EntityRef<PalestranteCache> _palestrante;
         private EntityRef<TrackCache> _track;
 
-        public PalestraCache() {}
+        public PalestraCache() { }
 
         public PalestraCache(int id, string nome, string descricao, DateTime horario)
         {
@@ -20,8 +21,6 @@ namespace QCon12.Mobile.Cache
             Descricao = descricao;
             Horario = horario;
         }
-
-        //private EntityRef<Palestrante> _palestrante;
 
         [Column(IsPrimaryKey = true)]
         public int Id { get; set; }
@@ -53,36 +52,39 @@ namespace QCon12.Mobile.Cache
             }
         }
 
-        /*[Column(DbType = "Int")]
+        [Column(DbType = "Int")]
         public int? PalestranteId { get; set; }
 
-        [Column, Association(Name = "FK_Palestrante_Palestra", Storage = "_palestrante", ThisKey = "Id", IsForeignKey = true)]
-        public Palestrante Palestrante
+        [Column, Association(Name = "FK_Track_Palestrante", Storage = "_palestrante", ThisKey = "PalestranteId", OtherKey = "Id", IsForeignKey = true)]
+        public PalestranteCache Palestrante
         {
             get { return _palestrante.Entity; }
             set
             {
-                var prevePalestrante = _palestrante.Entity;
-                if (prevePalestrante != value || _palestrante.HasLoadedOrAssignedValue == false)
+                var prevTrack = _palestrante.Entity;
+                if (prevTrack != value || _palestrante.HasLoadedOrAssignedValue == false)
                 {
-                    if (prevePalestrante != null)
-                        _palestrante.Entity = null;
-                    _palestrante.Entity = value;
+                    _palestrante.Entity = prevTrack != null ? null : value;
                     PalestranteId = value != null ? value.Id : default(int?);
                 }
-            } 
-        }*/
+            }
+        }
 
-        public static implicit operator Palestra(PalestraCache palestra)
+        public static implicit operator Palestra(PalestraCache palestraCache)
         {
-            return new Palestra
+            var palestra = new Palestra
             {
-                Id = palestra.Id,
-                Nome = palestra.Nome,
-                Descricao = palestra.Descricao,
-                Horario = palestra.Horario,
-                Track = palestra.Track
+                Id = palestraCache.Id,
+                Nome = palestraCache.Nome,
+                Descricao = palestraCache.Descricao,
+                Horario = palestraCache.Horario,
+                Track = palestraCache.Track
             };
+            if (palestraCache.Palestrante != null)
+                palestra.Palestrante = palestraCache.Palestrante;
+            if (palestraCache.Track != null) 
+                palestra.Track = palestraCache.Track;
+            return palestra;
         }
     }
 }

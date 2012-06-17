@@ -18,7 +18,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="{Binding Palestra.Nome}">
+        <controls:Pivot HeaderTemplate="{StaticResource PivotHeader32}" TitleTemplate="{StaticResource PivotTemplate}" Title="{Binding Palestra.Nome}">
             <!--Pivot item one-->
             <controls:PivotItem Header="Geral">
                 <Grid>
@@ -29,8 +29,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.463*"/>
-                        <ColumnDefinition Width="0.537*"/>
+                        <ColumnDefinition Width="211"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBlock TextWrapping="Wrap" Text="Descrição:" FontWeight="Bold"/>
                     <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="{Binding Palestra.Descricao}" Grid.ColumnSpan="2" Margin="0,-4,0,4" Name="txtDescricao" />
@@ -38,15 +38,13 @@
                     <TextBlock Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Path=Palestra.Horario, StringFormat=\{0:dd/MM/yyyy HH:mm\}}" Name="txtHorario" />
                 </Grid>
             </controls:PivotItem>
-
-            <!--Pivot item two-->
-            <controls:PivotItem Header="item2">
-                <Grid/>
+            <controls:PivotItem Header="Notas">
+                <TextBox HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Top" Foreground="Black" Background="White" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" BorderThickness="0" TextWrapping="Wrap" />
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
     <bar:Bindable.ApplicationBar>
-        <bar:BindableApplicationBar Mode="Minimized">
+        <bar:BindableApplicationBar>
             <bar:BindableApplicationBar.Buttons>
                 <bar:BindableApplicationBarButton Text="agendar" Command="{Binding Agendar}" IconUri="/Images/appbar.calendar.png"/>
                 <bar:BindableApplicationBarButton Text="tweetar" Command="{Binding Tweetar}" IconUri="/Images/appbar.twitter.png"/>
