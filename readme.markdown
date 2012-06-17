@@ -1,34 +1,36 @@
 # QCon 12 SP 
 
-Guia do QCon 2012 São Paulo.
-A aplicação tem como objetivo servir como guia, fornecendo dados sobre as palestras, os palestrantes e etc.
+Guia do QCon 2012 Sï¿½o Paulo.
+A aplicaï¿½ï¿½o tem como objetivo servir como guia, fornecendo dados sobre as palestras, os palestrantes e etc.
 
 ###Funcionalidades
 
-A aplicação já foi publicada e está em análise.
+A aplicaï¿½ï¿½o jï¿½ foi publicada e estï¿½ em anï¿½lise.
 
-####Versão 1.1 (Não publicado)
+####Versï¿½o 1.1 (Nï¿½o publicado)
 
-1. Visualização detalhada da palestra
+1. Visualizaï¿½ï¿½o detalhada da palestra
 2. Agendamento da palestra
 3. Tweetar palestra
 
-####Versão 1.0 (Publicado, aguardando liberação)
+####Versï¿½o 1.0 (Publicado, aguardando liberaï¿½ï¿½o)
 
 1. Listagem de tracks
 2. Listagem de palestrantes
 3. Listagem de palestras
-4. Visualização detalhada da track
-5. Visualição detalhada do palestrante com ultimos tweets
+4. Visualizaï¿½ï¿½o detalhada da track
+5. Visualiï¿½ï¿½o detalhada do palestrante com ultimos tweets
 6. Cache de dados
 
 ###Splash
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/Splash.png" width=150 />
 ###Home
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/Tracks.png" width=150 />
+&nbsp;
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/Palestrantes.png" width=150 />
 ###Palestrante
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/PalestranteView1.png" width=150 />
+&nbsp;
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/PalestranteView2.png" width=150 />
 ###Track
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/TrackView.png" width=150 />
