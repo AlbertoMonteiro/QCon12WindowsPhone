@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QCon12.Mobile", "QCon12.Mob
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbertoMonteiroWP7Tools", "..\AlbertoMonteiroWP7Tools\AlbertoMonteiroWP7Tools\AlbertoMonteiroWP7Tools.csproj", "{424B6F6C-D52F-4EBD-9107-27B03CF63848}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{A51DBB2D-8866-4335-B0DC-F4D605BD7CAE}"
+	ProjectSection(SolutionItems) = preProject
+		readme.markdown = readme.markdown
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
