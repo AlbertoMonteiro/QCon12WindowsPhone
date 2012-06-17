@@ -55,9 +55,6 @@ namespace QCon12.Mobile.Requests
                 try
                 {
                     var str = await request.DownloadStringTaskAsync(uri);
-#if DEBUG
-                    Thread.Sleep(1000);
-#endif
                     var serializer = JsonSerializer.Create(settings);
                     using (var stringReader = new StringReader(str))
                     {

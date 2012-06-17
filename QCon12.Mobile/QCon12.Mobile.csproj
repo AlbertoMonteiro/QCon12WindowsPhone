@@ -82,6 +82,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cache\CacheContext.cs" />
+    <Compile Include="Cache\PalestraCache.cs" />
+    <Compile Include="Cache\PalestranteCache.cs" />
+    <Compile Include="Cache\TrackCache.cs" />
     <Compile Include="Models\Palestra.cs" />
     <Compile Include="Models\Palestrante.cs" />
     <Compile Include="Models\Track.cs" />

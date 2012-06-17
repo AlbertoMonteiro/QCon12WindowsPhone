@@ -1,10 +1,12 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
+using System.Windows.Controls;
 using AlbertoMonteiroWP7Tools.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Phone.Controls;
 using QCon12.Mobile.Models;
 using QCon12.Mobile.Requests;
 
@@ -23,15 +25,12 @@ namespace QCon12.Mobile.ViewModel
             if (isInDesignModeStatic)
                 LoadDesignData();
             else
-            {
-                LoadTracks().Wait();
-                LoadPalestrantes().Wait();
-                LoadPalestras();
-            }
+                LoadTracks();
 
             TrackSelected = new RelayCommand<Track>(track => navigationService.NavigateTo(string.Format("/TrackView.xaml?id={0}", track.Id)));
             PalestranteSelected = new RelayCommand<Palestrante>(palestrante => navigationService.NavigateTo(string.Format("/ViewPalestrante.xaml?id={0}", palestrante.Id)));
-            MaisPalestrante = new RelayCommand(() => LoadPalestrantes());
+            MaisPalestrante = new RelayCommand(LoadPalestrantes);
+            PanoramaChangedCommand = new RelayCommand<SelectionChangedEventArgs>(PanoramaChanged);
         }
 
         public ObservableCollection<Track> Tracks { get; set; }
@@ -40,6 +39,7 @@ namespace QCon12.Mobile.ViewModel
         public RelayCommand<Track> TrackSelected { get; set; }
         public RelayCommand<Palestrante> PalestranteSelected { get; set; }
         public RelayCommand MaisPalestrante { get; set; }
+        public RelayCommand<SelectionChangedEventArgs> PanoramaChangedCommand { get; set; }
 
         private void LoadDesignData()
         {
@@ -66,44 +66,55 @@ namespace QCon12.Mobile.ViewModel
             });
         }
 
-        private Task LoadTracks()
+        private async void LoadTracks()
         {
             var tracksRequest = new TracksRequest();
-            return tracksRequest.List().ContinueWith(task =>
-            {
-                if (task.Result != null)
-                    foreach (var track in task.Result)
-                        Tracks.Add(track);    
-            });
-            
+            var tracks = await tracksRequest.List();
+            if (tracks != null)
+                foreach (var track in tracks)
+                    Tracks.Add(track);
         }
 
-        private Task LoadPalestrantes()
+        private async void LoadPalestrantes()
         {
-            if (canLoadPalestrantes)
-            {
-                canLoadPalestrantes = false;
-                var palestrantesRequest = new PalestrantesRequest();
-                return palestrantesRequest.List(Palestrantes.Count).ContinueWith(task =>
-                {
-                    if (task.Result != null)
-                        foreach (var palestrante in task.Result)
-                            Palestrantes.Add(palestrante);
-                    canLoadPalestrantes = true;    
-                });
-            }
-            return null;
+            if (!canLoadPalestrantes) return;
+
+            canLoadPalestrantes = false;
+            var palestrantesRequest = new PalestrantesRequest();
+            var palestrantes = await palestrantesRequest.List(Palestrantes.Count);
+            if (palestrantes != null)
+                foreach (var palestrante in palestrantes)
+                    Palestrantes.Add(palestrante);
+            canLoadPalestrantes = true;
         }
 
-        private Task LoadPalestras()
+        private async void LoadPalestras()
         {
-            var palestrasAzureRequest = new PalestrasRequest();
-            return palestrasAzureRequest.List().ContinueWith(task =>
+            var palestrasRequest = new PalestrasRequest();
+            var palestras = await palestrasRequest.List();
+            SynchronizationContext.Current.Post(state =>
             {
-                if (task.Result != null)
-                    foreach (var palestra in task.Result)
+                if (palestras != null)
+                    foreach (var palestra in palestras)
                         Palestras.Add(palestra);
-            });
+            }, null);
+        }
+
+        private void PanoramaChanged(SelectionChangedEventArgs args)
+        {
+            var header = ((PanoramaItem) args.AddedItems[0]).Header.ToString();
+            switch (header)
+            {
+            case "Tracks":
+                if (!Tracks.Any()) LoadTracks();
+                break;
+            case "Palestrantes":
+                if (!Palestrantes.Any()) LoadPalestrantes();
+                break;
+            case "Palestras":
+                if (!Palestras.Any()) LoadPalestras();
+                break;
+            }
         }
     }
 }

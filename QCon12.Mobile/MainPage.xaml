@@ -22,6 +22,11 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Panorama Title="QCon 12 SP" TitleTemplate="{StaticResource TitleTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <Command:EventToCommand Command="{Binding PanoramaChangedCommand}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <controls:PanoramaItem Header="Tracks" HeaderTemplate="{StaticResource HeaderTemplate}">
                 <ListBox Name="TrackList" ItemsSource="{Binding Tracks}">
                     <i:Interaction.Triggers>

@@ -15,17 +15,17 @@ namespace QCon12.Mobile.Cache
             DeferredLoadingEnabled = true;
         }
 
-        public Table<Track> Tracks
+        public Table<TrackCache> Tracks
         {
-            get { return GetTable<Track>(); }
+            get { return GetTable<TrackCache>(); }
         }
-        public Table<Palestra> Palestras
+        public Table<PalestraCache> Palestras
         {
-            get { return GetTable<Palestra>(); }
+            get { return GetTable<PalestraCache>(); }
         }
-        public Table<Palestrante> Palestrantes
+        public Table<PalestranteCache> Palestrantes
         {
-            get { return GetTable<Palestrante>(); }
+            get { return GetTable<PalestranteCache>(); }
         }
     }
 }
