@@ -53,6 +53,9 @@
     <Reference Include="AsyncCtpLibrary_Phone">
       <HintPath>..\packages\AsyncCTP.0.3\lib\sl4-wp71\AsyncCtpLibrary_Phone.dll</HintPath>
     </Reference>
+    <Reference Include="BindableApplicationBar">
+      <HintPath>..\packages\BindableApplicationBar.1.0.0\lib\sl4-windowsphone71\BindableApplicationBar.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WP71">
       <HintPath>..\packages\MvvmLight.3.1.1\lib\sl4-windowsphone71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
     </Reference>
@@ -92,6 +95,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Tweet.cs" />
+    <Compile Include="PalestraView.xaml.cs">
+      <DependentUpon>PalestraView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\ServiceRequest.cs" />
     <Compile Include="Requests\PalestrantesRequest.cs" />
@@ -104,6 +110,7 @@
     <Compile Include="Utils\TwitterDateTimeConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PalestranteViewModel.cs" />
+    <Compile Include="ViewModel\PalestraViewModel.cs" />
     <Compile Include="ViewModel\TrackViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewPalestrante.xaml.cs">
@@ -118,6 +125,10 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PalestraView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +158,8 @@
   <ItemGroup>
     <Resource Include="Desktop.png" />
     <Resource Include="ProgramList.png" />
+    <Content Include="Images\appbar.calendar.png" />
+    <Content Include="Images\appbar.twitter.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

@@ -67,7 +67,13 @@
                 </ListBox>
             </controls:PanoramaItem>
             <controls:PanoramaItem Header="Palestras" HeaderTemplate="{StaticResource HeaderTemplate}">
-                <ListBox ItemsSource="{Binding Path=Palestras}" ItemTemplate="{StaticResource PalestraListBoxTemplate}"/>
+                <ListBox Name="PalestrasList" ItemsSource="{Binding Path=Palestras}" ItemTemplate="{StaticResource PalestraListBoxTemplate}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Tap">
+                            <Command:EventToCommand Command="{Binding PalestraSelected}" CommandParameter="{Binding ElementName=PalestrasList, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ListBox>
             </controls:PanoramaItem>
 
         </controls:Panorama>

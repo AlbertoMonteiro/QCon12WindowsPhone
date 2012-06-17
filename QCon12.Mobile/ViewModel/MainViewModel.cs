@@ -29,6 +29,7 @@ namespace QCon12.Mobile.ViewModel
 
             TrackSelected = new RelayCommand<Track>(track => navigationService.NavigateTo(string.Format("/TrackView.xaml?id={0}", track.Id)));
             PalestranteSelected = new RelayCommand<Palestrante>(palestrante => navigationService.NavigateTo(string.Format("/ViewPalestrante.xaml?id={0}", palestrante.Id)));
+            PalestraSelected = new RelayCommand<Palestra>(palestra => navigationService.NavigateTo(string.Format("/PalestraView.xaml?id={0}", palestra.Id)));
             MaisPalestrante = new RelayCommand(LoadPalestrantes);
             PanoramaChangedCommand = new RelayCommand<SelectionChangedEventArgs>(PanoramaChanged);
         }
@@ -38,6 +39,7 @@ namespace QCon12.Mobile.ViewModel
         public ObservableCollection<Palestrante> Palestrantes { get; set; }
         public RelayCommand<Track> TrackSelected { get; set; }
         public RelayCommand<Palestrante> PalestranteSelected { get; set; }
+        public RelayCommand<Palestra> PalestraSelected { get; set; }
         public RelayCommand MaisPalestrante { get; set; }
         public RelayCommand<SelectionChangedEventArgs> PanoramaChangedCommand { get; set; }
 
