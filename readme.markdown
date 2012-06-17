@@ -1,25 +1,25 @@
 # QCon 12 SP 
 
-Guia do QCon 2012 Sï¿½o Paulo.
-A aplicaï¿½ï¿½o tem como objetivo servir como guia, fornecendo dados sobre as palestras, os palestrantes e etc.
+Guia do QCon 2012 São Paulo.
+A aplicação tem como objetivo servir como guia, fornecendo dados sobre as palestras, os palestrantes e etc.
 
 ###Funcionalidades
 
-A aplicaï¿½ï¿½o jï¿½ foi publicada e estï¿½ em anï¿½lise.
+A aplicação já foi publicada e está em análise.
 
-####Versï¿½o 1.1 (Nï¿½o publicado)
+####Versão 1.1 (Não publicado)
 
-1. Visualizaï¿½ï¿½o detalhada da palestra
+1. Visualização detalhada da palestra
 2. Agendamento da palestra
 3. Tweetar palestra
 
-####Versï¿½o 1.0 (Publicado, aguardando liberaï¿½ï¿½o)
+####Versão 1.0 (Publicado, aguardando liberação)
 
 1. Listagem de tracks
 2. Listagem de palestrantes
 3. Listagem de palestras
-4. Visualizaï¿½ï¿½o detalhada da track
-5. Visualiï¿½ï¿½o detalhada do palestrante com ultimos tweets
+4. Visualização detalhada da track
+5. Visualização detalhada do palestrante com ultimos tweets
 6. Cache de dados
 
 ###Splash
