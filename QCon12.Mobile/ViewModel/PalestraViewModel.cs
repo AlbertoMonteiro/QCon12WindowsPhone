@@ -1,8 +1,10 @@
 using System;
+using System.Windows;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Scheduler;
+using Microsoft.Phone.Tasks;
 using QCon12.Mobile.Models;
 using QCon12.Mobile.Requests;
 using NavigationService = AlbertoMonteiroWP7Tools.Navigation.NavigationService;
@@ -21,12 +23,35 @@ namespace QCon12.Mobile.ViewModel
             if (isInDesignModeStatic)
                 LoadDesignData();
             else
+            {
+                if (navigationService == null) 
+                    navigationService = new NavigationService();
                 navigationService.Navigated += Ready;
+            }
 
-            Agendar = new RelayCommand(() =>
+            Agendar = new RelayCommand(EfeutarAgendamento);
+            Tweetar = new RelayCommand(Compartilhar);
+        }
+
+        private void Compartilhar()
+        {
+            var shareStatusTask = new ShareStatusTask
+            {
+                Status = string.Format("Vou conferir a palestra {0} no #qcon12sp", Palestra.Nome)
+            };
+            shareStatusTask.Show();
+        }
+
+        private void EfeutarAgendamento()
+        {
+            var reminderName = string.Format("Palestra{0}", Palestra.Id);
+            var scheduledAction = ScheduledActionService.Find(reminderName);
+            if (scheduledAction != null)
+                MessageBox.Show("Palestra já agendada.", "QCon 12 SP", MessageBoxButton.OK);
+            else
             {
                 var uri = new Uri(string.Format("/PalestraView.xaml?id={0}", id), UriKind.Relative);
-                var reminder = new Reminder(Palestra.Nome)
+                var reminder = new Reminder(reminderName)
                 {
                     Title = Palestra.Nome,
                     Content = "Se liga que a palestra jaja vai começar",
@@ -35,11 +60,13 @@ namespace QCon12.Mobile.ViewModel
                     NavigationUri = uri
                 };
                 ScheduledActionService.Add(reminder);
-            });
+                MessageBox.Show("Agendamento efetuado.", "QCon 12 SP", MessageBoxButton.OK);
+            }
         }
 
         public Palestra Palestra { get; set; }
         public RelayCommand Agendar { get; set; }
+        public RelayCommand Tweetar { get; set; }
 
         private void LoadDesignData()
         {
@@ -54,7 +81,7 @@ namespace QCon12.Mobile.ViewModel
 
         public void Ready(object sender, NavigationEventArgs args)
         {
-            if (args.Uri.ToString().Contains("PalestraView.xaml"))
+            if (args != null && args.Uri != null && args.Uri.ToString().Contains("PalestraView.xaml"))
             {
                 id = Convert.ToInt32(navigationService.GetParameter("id", "0"));
                 LoadPalestra(id);
