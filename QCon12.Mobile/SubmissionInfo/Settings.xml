@@ -2,5 +2,5 @@
   <SmallAppTile>SmallTitle.png</SmallAppTile>
   <LargeAppTile>Desktop.png</LargeAppTile>
   <PCAppTile>Marketplace.png</PCAppTile>
-  <ScreenShots>Splash.png;Tracks.png;TrackView.png;Palestrantes.png;PalestranteView1.png;PalestranteView2.png;;;</ScreenShots>
+  <ScreenShots>Splash.png;Tracks.png;Palestrantes.png;Palestras.png;PalestraView3.png;PalestraView2.png;PalestranteView1.png;TrackView.png;</ScreenShots>
 </MarketplaceDetails>
