@@ -27,6 +27,8 @@ A aplicação já foi publicada e está em análise.
 ###Home
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/Tracks.png" width=150 />
 &nbsp;
+<img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/Palestras.png" width=150 />
+&nbsp;
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/Palestrantes.png" width=150 />
 ###Palestrante
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/PalestranteView1.png" width=150 />
@@ -34,3 +36,7 @@ A aplicação já foi publicada e está em análise.
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/PalestranteView2.png" width=150 />
 ###Track
 <img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/TrackView.png" width=150 />
+###Palestra
+<img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/PalestraView3.png" width=150 />
+&nbsp;
+<img src="https://github.com/AlbertoMonteiro/QCon12WindowsPhone/raw/master/QCon12.Mobile/SubmissionInfo/PalestraView2.png" width=150 />
