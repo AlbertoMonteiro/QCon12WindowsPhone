@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System;
+using Microsoft.Phone.Controls;
 
 namespace QCon12.Mobile
 {
@@ -7,6 +8,11 @@ namespace QCon12.Mobile
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Configuration.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

@@ -88,6 +88,9 @@
     <Compile Include="Cache\PalestraCache.cs" />
     <Compile Include="Cache\PalestranteCache.cs" />
     <Compile Include="Cache\TrackCache.cs" />
+    <Compile Include="Configuration.xaml.cs">
+      <DependentUpon>Configuration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Palestra.cs" />
     <Compile Include="Models\Palestrante.cs" />
     <Compile Include="Models\Track.cs" />
@@ -104,6 +107,9 @@
     <Compile Include="Requests\PalestrasRequest.cs" />
     <Compile Include="Requests\TracksRequest.cs" />
     <Compile Include="Requests\TweetRequest.cs" />
+    <Compile Include="SampleData\PalestrasDaTrack\PalestrasDaTrack.xaml.cs">
+      <DependentUpon>PalestrasDaTrack.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TrackView.xaml.cs">
       <DependentUpon>TrackView.xaml</DependentUpon>
     </Compile>
@@ -122,6 +128,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Configuration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <DesignTimeOnly Include="SampleData\PalestrasDaTrack\PalestrasDaTrack.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </DesignTimeOnly>
     <Page Include="TrackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,6 +168,7 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <DesignTimeOnly Include="SampleData\PalestrasDaTrack\PalestrasDaTrack.xsd" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Desktop.png" />
@@ -161,6 +176,11 @@
     <Content Include="Images\appbar.calendar.png" />
     <Content Include="Images\appbar.twitter.png" />
     <Content Include="SplashScreenImage.jpg" />
+    <DesignTimeOnly Include="SampleData\PalestrasDaTrack\PalestrasDaTrack_Files\image01.png" />
+    <DesignTimeOnly Include="SampleData\PalestrasDaTrack\PalestrasDaTrack_Files\image02.png" />
+    <DesignTimeOnly Include="SampleData\PalestrasDaTrack\PalestrasDaTrack_Files\image03.png" />
+    <DesignTimeOnly Include="SampleData\PalestrasDaTrack\PalestrasDaTrack_Files\image04.png" />
+    <DesignTimeOnly Include="SampleData\PalestrasDaTrack\PalestrasDaTrack_Files\image05.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AlbertoMonteiroWP7Tools\AlbertoMonteiroWP7Tools\AlbertoMonteiroWP7Tools.csproj">

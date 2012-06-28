@@ -1,9 +1,10 @@
-﻿<Application x:Class="QCon12.Mobile.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:vm="clr-namespace:QCon12.Mobile.ViewModel"
+             xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.PalestrasDaTrack" x:Class="QCon12.Mobile.App"
              mc:Ignorable="d" >
   <!--Application Resources-->
   <Application.Resources>
@@ -11,6 +12,7 @@
   		<ResourceDictionary.MergedDictionaries>
   			<ResourceDictionary Source="ResourceDictionary.xaml"/>
   		</ResourceDictionary.MergedDictionaries>
+  		<SampleData:PalestrasDaTrack x:Key="PalestrasDaTrack" d:IsDataSource="True"/>
   		<vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
   	</ResourceDictionary>
   </Application.Resources>
